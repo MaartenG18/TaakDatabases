@@ -7,10 +7,11 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <class>be.kuleuven.vrolijkezweters.model.persoon.Persoon</class>
+        <class>be.kuleuven.vrolijkezweters.model.vrijwilliger.Vrijwilliger</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:vrolijkezweters.sqlite"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:vrolijkezweterstest.sqlite"/>
             <property name="javax.persistence.jdbc.user" value=""/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

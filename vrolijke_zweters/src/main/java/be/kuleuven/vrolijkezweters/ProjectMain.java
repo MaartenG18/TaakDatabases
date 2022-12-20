@@ -2,12 +2,15 @@ package be.kuleuven.vrolijkezweters;
 
 import be.kuleuven.vrolijkezweters.model.persoon.Persoon;
 import be.kuleuven.vrolijkezweters.model.persoon.PersoonRepositoryJpaImpl;
+import be.kuleuven.vrolijkezweters.model.vrijwilliger.Vrijwilliger;
+import be.kuleuven.vrolijkezweters.model.vrijwilliger.VrijwilligerRepositoryJpaImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
 /**
@@ -48,17 +51,29 @@ public class ProjectMain extends Application {
         var entityManager = sessionFactory.createEntityManager();
 
         System.out.println("Bootstrapping Repository...");
-        var repo = new PersoonRepositoryJpaImpl(entityManager);
+        var persoonRepo = new PersoonRepositoryJpaImpl(entityManager);
 
-        // TODO pruts hier om in 'productie' te testen - enkel NADAT testen in orde zijn!
-        System.out.println("Persisting Jos Lowiemans, Truus Van Hooibergen...");
-        var jos = new Persoon("Lowiemans", "Jos", "15011999", 'M');
-        var truus = new Persoon("Van Hooibergen", "Truus", "01012001", 'V');
+        Persoon jos = new Persoon();
+        jos.setNaam("Lowiemans");
+        jos.setVoornaam("Jos");
+        jos.setGender('M');
+        jos.setGeboorteDatum("01012000");
+        persoonRepo.saveNewPersoon(jos);
 
-        repo.saveNewPersoon(truus);
-        repo.saveNewPersoon(jos);
+        Vrijwilliger josZijnEersteTaak = new Vrijwilliger();
+        josZijnEersteTaak.setTaak("Water geven");
 
-        isJosEr(repo);
+        josZijnEersteTaak.setNaam(jos.getNaam());
+        josZijnEersteTaak.setVoornaam(jos.getVoornaam());
+        josZijnEersteTaak.setGender(jos.getGender());
+        josZijnEersteTaak.setGeboorteDatum(jos.getGeboorteDatum());
+
+        isJosEr(persoonRepo);
+
+        entityManager.clear();
+        entityManager.close();
+
+
     }
 
     private static void isJosEr(PersoonRepositoryJpaImpl repo) {

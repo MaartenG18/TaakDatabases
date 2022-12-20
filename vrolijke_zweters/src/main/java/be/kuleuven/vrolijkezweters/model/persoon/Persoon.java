@@ -1,30 +1,36 @@
 package be.kuleuven.vrolijkezweters.model.persoon;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import be.kuleuven.vrolijkezweters.model.vrijwilliger.Vrijwilliger;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "Persoon")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Persoon {
 
     @Column
     private String naam;
+
     @Column
     private String voornaam;
+
     @Column
     private String geboorteDatum;
+
     @Column
     private char gender;
 
-    @Column
+    @Column(name = "persoonId")
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int persoonId;
 
     public Persoon() {
 
     }
+
 
     public int getPersoonId() {
         return persoonId;
@@ -46,6 +52,10 @@ public class Persoon {
         return gender;
     }
 
+
+    public void setPersoonId(int persoonId) {
+        this.persoonId = persoonId;
+    }
 
     public void setNaam(String naam) {
         this.naam = naam;
@@ -69,8 +79,8 @@ public class Persoon {
                 "naam='" + naam + '\'' +
                 ", voornaam='" + voornaam + '\'' +
                 ", gender=" + gender +
-                ", persoonId=" + persoonId +
                 ", geboorteDatum=" + geboorteDatum +
+                ", persoonId=" + persoonId +
                 '}';
     }
 
