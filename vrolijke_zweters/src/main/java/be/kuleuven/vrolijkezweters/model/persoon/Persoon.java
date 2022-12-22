@@ -1,7 +1,5 @@
 package be.kuleuven.vrolijkezweters.model.persoon;
 
-import be.kuleuven.vrolijkezweters.model.vrijwilliger.Vrijwilliger;
-
 public class Persoon {
 
     private String naam;
@@ -15,6 +13,7 @@ public class Persoon {
         this.geboorteDatum = geboorteDatum;
         this.gender = gender;
     }
+
 
     // ----- Getters -----
 
@@ -33,6 +32,7 @@ public class Persoon {
     public char getGender() {
         return gender;
     }
+
 
     // ----- Setters -----
 
@@ -61,6 +61,4 @@ public class Persoon {
                 ", geboorteDatum=" + geboorteDatum +
                 '}';
     }
-
-
 }

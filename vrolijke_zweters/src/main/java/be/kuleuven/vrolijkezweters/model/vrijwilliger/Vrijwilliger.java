@@ -2,8 +2,6 @@ package be.kuleuven.vrolijkezweters.model.vrijwilliger;
 
 import be.kuleuven.vrolijkezweters.model.persoon.Persoon;
 
-import javax.persistence.*;
-
 public class Vrijwilliger extends Persoon {
 
     private String taak;
@@ -12,6 +10,7 @@ public class Vrijwilliger extends Persoon {
         super(naam, voornaam, geboorteDatum, gender);
         this.taak = taak;
     }
+
 
     // ----- Getters -----
 
@@ -30,7 +29,7 @@ public class Vrijwilliger extends Persoon {
     @Override
     public String toString() {
         return "Vrijwilliger{" +
-                ", taak=" + taak +
+                "taak=" + taak +
                 '}';
     }
 }
