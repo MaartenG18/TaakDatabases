@@ -4,25 +4,23 @@ import be.kuleuven.vrolijkezweters.model.persoon.Persoon;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "Vrijwilliger")
-@PrimaryKeyJoinColumn(name = "ID")
 public class Vrijwilliger extends Persoon {
-    @Column
+
     private String taak;
 
-    public Vrijwilliger() {
-
-    }
-
-    public Vrijwilliger(String taak) {
+    public Vrijwilliger(String naam, String voornaam, String geboorteDatum, char gender, String taak) {
+        super(naam, voornaam, geboorteDatum, gender);
         this.taak = taak;
     }
+
+    // ----- Getters -----
 
     public String getTaak() {
         return taak;
     }
 
+
+    // ----- Setters -----
 
     public void setTaak(String taak) {
         this.taak = taak;
