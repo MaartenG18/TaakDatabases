@@ -2,17 +2,19 @@ package be.kuleuven.vrolijkezweters.model.loper;
 
 import be.kuleuven.vrolijkezweters.model.persoon.Persoon;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class Loper extends Persoon {
 
     private int fitheid;
     private int gewicht;
 
-    public Loper(String naam, String voornaam, String geboorteDatum, char gender, int fitheid, int gewicht) {
-        super(naam, voornaam, geboorteDatum, gender);
+    public Loper(int persoonId, String naam, String voornaam, LocalDate geboorteDatum, String gender, String email, String wachtwoord, boolean admin, int fitheid, int gewicht) {
+        super(persoonId, naam, voornaam, geboorteDatum, gender, email, wachtwoord, admin);
         this.fitheid = fitheid;
         this.gewicht = gewicht;
     }
-
 
     // ----- Getters -----
 

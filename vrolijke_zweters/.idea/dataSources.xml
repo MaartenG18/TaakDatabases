@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:D:\School\2022-2023\DAB\TaakDatabases\vrolijke_zweters\vrolijkezweters.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="vrolijkezweterstest.sqlite" uuid="d5ac6b87-0aeb-44d5-becb-564416852b9d">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/vrolijkezweterstest.sqlite</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
