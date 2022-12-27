@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ProjectMainController {
+public class AdminController {
 
     @FXML
     private Button btnWedstrijden;

@@ -92,7 +92,7 @@ public class LoginController {
             showAlert("Warning!", "We hebben nog geen account gevonden met dit email adres, probeer te registeren");
         }
         else if(Objects.equals(persoon.getEmail(), model.getEmail()) && Objects.equals(persoon.getWachtwoord(), model.getPassword())) {
-            new ScreenOpener("home");
+            new ScreenOpener("home", persoon);
             view.stop();
         }
         else {

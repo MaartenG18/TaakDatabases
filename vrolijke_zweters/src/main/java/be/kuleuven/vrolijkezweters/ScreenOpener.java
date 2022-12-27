@@ -1,24 +1,36 @@
 package be.kuleuven.vrolijkezweters;
 
+import be.kuleuven.vrolijkezweters.controller.AdminController;
 import be.kuleuven.vrolijkezweters.controller.HomeController;
 import be.kuleuven.vrolijkezweters.controller.LoginController;
 import be.kuleuven.vrolijkezweters.controller.RegisterController;
 import be.kuleuven.vrolijkezweters.model.login.Login;
+import be.kuleuven.vrolijkezweters.model.persoon.Persoon;
 import be.kuleuven.vrolijkezweters.model.register.Register;
 import be.kuleuven.vrolijkezweters.view.HomeView;
 import be.kuleuven.vrolijkezweters.view.LoginView;
 import be.kuleuven.vrolijkezweters.view.RegisterView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ScreenOpener {
     private String fileName;
+    private Persoon persoon;
 
     public ScreenOpener(String fileName) {
         this.fileName = fileName;
+
+        openScreen();
+    }
+
+    public ScreenOpener(String fileName, Persoon persoon) {
+        this.fileName = fileName;
+        this.persoon = persoon;
 
         openScreen();
     }
@@ -33,6 +45,10 @@ public class ScreenOpener {
                 break;
             case "home":
                 openHomeScreen();
+                break;
+            case "admin":
+                openAdminScreen();
+                break;
         }
     }
 
@@ -40,7 +56,7 @@ public class ScreenOpener {
         try {
             Stage stage = new Stage();
             HomeView homeView = new HomeView(stage);
-            HomeController homeController = new HomeController(homeView);
+            HomeController homeController = new HomeController(homeView, persoon);
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("main.fxml"));
             fxmlLoader.setController(homeController);
@@ -83,6 +99,24 @@ public class ScreenOpener {
             Parent root = fxmlLoader.load();
             loginView.setRoot(root);
             loginView.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openAdminScreen() {
+        try {
+            Stage stage = new Stage();
+            AdminController adminController = new AdminController();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("admin.fxml"));
+            fxmlLoader.setController(adminController);
+            Parent root = fxmlLoader.load();
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("De Vrolijke Zweters - Admin");
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();

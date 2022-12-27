@@ -149,7 +149,7 @@ public class RegisterController {
 
             persoonDao.createPersoon(newPersoon);
 
-            new ScreenOpener("home");
+            new ScreenOpener("home", newPersoon);
             view.stop();
 
         } else {
