@@ -8,7 +8,7 @@ public class EntityManagerProvider {
     private static EntityManagerFactory entityManagerFactory;
 
     static {
-        entityManagerFactory = Persistence.createEntityManagerFactory("be.kuleuven.vrolijkezweters.model.persoon");
+        entityManagerFactory = Persistence.createEntityManagerFactory("be.kuleuven.vrolijkezweters.model");
     }
 
     public static EntityManager getEntityManager() {

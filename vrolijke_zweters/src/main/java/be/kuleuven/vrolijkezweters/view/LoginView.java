@@ -1,6 +1,6 @@
 package be.kuleuven.vrolijkezweters.view;
 
-import be.kuleuven.vrolijkezweters.model.login.Login;
+import be.kuleuven.vrolijkezweters.model.Login;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

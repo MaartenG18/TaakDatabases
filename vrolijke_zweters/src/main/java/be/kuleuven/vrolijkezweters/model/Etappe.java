@@ -1,4 +1,4 @@
-package be.kuleuven.vrolijkezweters.model.etappe;
+package be.kuleuven.vrolijkezweters.model;
 
 public class Etappe {
 

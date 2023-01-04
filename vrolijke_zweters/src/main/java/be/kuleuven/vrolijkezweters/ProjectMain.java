@@ -1,19 +1,17 @@
 package be.kuleuven.vrolijkezweters;
 
 import be.kuleuven.vrolijkezweters.controller.LoginController;
+import be.kuleuven.vrolijkezweters.database.LoperDao;
 import be.kuleuven.vrolijkezweters.database.PersoonDao;
-import be.kuleuven.vrolijkezweters.model.login.Login;
-import be.kuleuven.vrolijkezweters.model.persoon.Persoon;
-import be.kuleuven.vrolijkezweters.model.vrijwilliger.Vrijwilliger;
+import be.kuleuven.vrolijkezweters.database.VrijwilligerDao;
+import be.kuleuven.vrolijkezweters.database.WedstrijdDao;
+import be.kuleuven.vrolijkezweters.model.*;
 import be.kuleuven.vrolijkezweters.view.LoginView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 
-import javax.persistence.Persistence;
 import java.time.LocalDate;
 
 /**
@@ -56,6 +54,9 @@ public class ProjectMain extends Application {
 
     private void maakNieuwePersonen() {
         PersoonDao persoonDao = new PersoonDao();
+        LoperDao loperDao = new LoperDao();
+        VrijwilligerDao vrijwilligerDao = new VrijwilligerDao();
+        WedstrijdDao wedstrijdDao = new WedstrijdDao();
 
         Persoon admin = new Persoon();
         admin.setNaam("Gielkens");
@@ -68,6 +69,30 @@ public class ProjectMain extends Application {
 
         persoonDao.createPersoon(admin);
 
+        Wedstrijd wedstrijd = new Wedstrijd();
+        wedstrijd.setDatum("12/12/2012");
+        wedstrijd.setStartLocatie("Genk");
+        wedstrijd.setEindLocatie("Hasselt");
+        wedstrijd.setInschrijvingsGeld(10);
+
+        wedstrijdDao.createWedstrijd(wedstrijd);
+
+        Loper loper = new Loper();
+        loper.setGewicht(95);
+        loper.setFitheid(70);
+        loper.setPersoon(admin);
+        loper.setWedstrijd(wedstrijd);
+
+        loperDao.createLoper(loper);
+
+        Loper loper1 = new Loper();
+        loper1.setGewicht(105);
+        loper1.setFitheid(50);
+        loper1.setPersoon(admin);
+        loper1.setWedstrijd(wedstrijd);
+
+        loperDao.createLoper(loper1);
+
         Persoon persoon1 = new Persoon();
         persoon1.setNaam("Groeneveld");
         persoon1.setVoornaam("Wouter");
@@ -79,6 +104,14 @@ public class ProjectMain extends Application {
 
         persoonDao.createPersoon(persoon1);
 
+        Loper loper2 = new Loper();
+        loper2.setGewicht(70);
+        loper2.setFitheid(85);
+        loper2.setPersoon(persoon1);
+        loper2.setWedstrijd(wedstrijd);
+
+        loperDao.createLoper(loper2);
+
         Persoon persoon2 = new Persoon();
         persoon2.setNaam("Aerts");
         persoon2.setVoornaam("Kris");
@@ -89,5 +122,15 @@ public class ProjectMain extends Application {
         persoon2.setAdmin(false);
 
         persoonDao.createPersoon(persoon2);
+
+        Vrijwilliger vrijwilliger = new Vrijwilliger();
+        vrijwilliger.setTaak("Startschot geven");
+        vrijwilliger.setPersoon(persoon2);
+        vrijwilliger.setWedstrijd(wedstrijd);
+
+        vrijwilligerDao.createVrijwilliger(vrijwilliger);
+
+
+
     }
 }

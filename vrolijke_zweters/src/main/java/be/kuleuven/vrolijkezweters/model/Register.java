@@ -1,4 +1,4 @@
-package be.kuleuven.vrolijkezweters.model.register;
+package be.kuleuven.vrolijkezweters.model;
 
 import javafx.beans.property.*;
 

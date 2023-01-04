@@ -2,11 +2,14 @@
 <persistence version="2.1"
              xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-    <persistence-unit name="be.kuleuven.vrolijkezweters.model.persoon">
-        <description>Vrolijke zweters persoon</description>
+    <persistence-unit name="be.kuleuven.vrolijkezweters.model">
+        <description>Vrolijke zweters</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>be.kuleuven.vrolijkezweters.model.persoon.Persoon</class>
+        <class>be.kuleuven.vrolijkezweters.model.Persoon</class>
+        <class>be.kuleuven.vrolijkezweters.model.Wedstrijd</class>
+        <class>be.kuleuven.vrolijkezweters.model.Loper</class>
+        <class>be.kuleuven.vrolijkezweters.model.Vrijwilliger</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>

@@ -1,16 +1,18 @@
-package be.kuleuven.vrolijkezweters.model.persoon;
+package be.kuleuven.vrolijkezweters.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "personen")
 public class Persoon {
 
-    @Column(name = "persoonId", nullable = false)
+    @Column(name = "persoonId")
     @Id
-    @GeneratedValue
-    private int persoonId;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Long persoonId;
 
     @Column(name = "naam", nullable = false)
     private String naam;
@@ -33,12 +35,19 @@ public class Persoon {
     @Column(name = "admin", nullable = false)
     private boolean admin;
 
+    @OneToMany(mappedBy = "persoon")
+    private List<Loper> lopers;
+
+    @OneToMany(mappedBy = "persoon")
+    private List<Vrijwilliger> vrijwilligers;
+
     public Persoon() {
 
     }
 
-    public Persoon(int persoonId, String naam, String voornaam, LocalDate geboorteDatum, String gender, String email, String wachtwoord, boolean admin) {
-        this.persoonId = persoonId;
+    public Persoon(String naam, String voornaam, LocalDate geboorteDatum, String gender, String email, String wachtwoord, boolean admin) {
+        lopers = new ArrayList<>();
+        vrijwilligers = new ArrayList<>();
         this.naam = naam;
         this.voornaam = voornaam;
         this.geboorteDatum = geboorteDatum;
@@ -48,12 +57,18 @@ public class Persoon {
         this.admin = admin;
     }
 
-    public int getPersoonId() {
-        return persoonId;
+    public void schrijfLoperIn(Loper loper) {
+        lopers.add(loper);
+        loper.setPersoon(this);
     }
 
-    public void setPersoonId(int persoonId) {
-        this.persoonId = persoonId;
+    public void schrijfVrijwilligerIn(Vrijwilliger vrijwilliger) {
+        vrijwilligers.add(vrijwilliger);
+        vrijwilliger.setPersoon(this);
+    }
+
+    public Long getPersoonId() {
+        return persoonId;
     }
 
     public String getNaam() {

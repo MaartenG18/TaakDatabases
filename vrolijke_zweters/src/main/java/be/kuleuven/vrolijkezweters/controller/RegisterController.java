@@ -5,8 +5,8 @@ import java.util.ResourceBundle;
 
 import be.kuleuven.vrolijkezweters.ScreenOpener;
 import be.kuleuven.vrolijkezweters.database.PersoonDao;
-import be.kuleuven.vrolijkezweters.model.persoon.Persoon;
-import be.kuleuven.vrolijkezweters.model.register.Register;
+import be.kuleuven.vrolijkezweters.model.Persoon;
+import be.kuleuven.vrolijkezweters.model.Register;
 import be.kuleuven.vrolijkezweters.view.RegisterView;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

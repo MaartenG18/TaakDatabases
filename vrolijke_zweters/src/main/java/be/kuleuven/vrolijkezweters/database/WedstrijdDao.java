@@ -1,24 +1,25 @@
 package be.kuleuven.vrolijkezweters.database;
 
 import be.kuleuven.vrolijkezweters.EntityManagerProvider;
-import be.kuleuven.vrolijkezweters.model.Persoon;
+import be.kuleuven.vrolijkezweters.model.Wedstrijd;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.net.http.WebSocket;
 
-public class PersoonDao {
+public class WedstrijdDao {
     private final EntityManager entityManager;
 
-    public PersoonDao() {
+    public WedstrijdDao () {
         this.entityManager = EntityManagerProvider.getEntityManager();
     }
 
-    public Persoon findPersoonByName(String naam) {
+    public Wedstrijd findWedstrijdByStartLocation(String location) {
         var criteriaBuilder = entityManager.getCriteriaBuilder();
-        var query = criteriaBuilder.createQuery(Persoon.class); // SELECT .... FROM PERSOON
-        var root = query.from(Persoon.class); // SELECT *
+        var query = criteriaBuilder.createQuery(Wedstrijd.class);
+        var root = query.from(Wedstrijd.class);
 
-        query.where(criteriaBuilder.equal(root.get("naam"), naam));
+        query.where(criteriaBuilder.equal(root.get("startLocatie"), location));
 
         try {
             return entityManager.createQuery(query).getSingleResult();
@@ -27,12 +28,12 @@ public class PersoonDao {
         }
     }
 
-    public Persoon findPersoonByEmail(String email) {
+    public Wedstrijd findWedstrijdByDate(String datum) {
         var criteriaBuilder = entityManager.getCriteriaBuilder();
-        var query = criteriaBuilder.createQuery(Persoon.class); // SELECT .... FROM PERSOON
-        var root = query.from(Persoon.class); // SELECT *
+        var query = criteriaBuilder.createQuery(Wedstrijd.class);
+        var root = query.from(Wedstrijd.class);
 
-        query.where(criteriaBuilder.equal(root.get("email"), email));
+        query.where(criteriaBuilder.equal(root.get("datum"), datum));
 
         try {
             return entityManager.createQuery(query).getSingleResult();
@@ -41,21 +42,21 @@ public class PersoonDao {
         }
     }
 
-    public void createPersoon(Persoon persoon) {
+    public void createWedstrijd(Wedstrijd wedstrijd) {
         entityManager.getTransaction().begin();
-        entityManager.persist(persoon);
+        entityManager.persist(wedstrijd);
         entityManager.getTransaction().commit();
     }
 
-    public void updatePersoon(Persoon persoon) {
+    public void updateWedstrijd(Wedstrijd wedstrijd) {
         entityManager.getTransaction().begin();
-        entityManager.merge(persoon);
+        entityManager.merge(wedstrijd);
         entityManager.getTransaction().commit();
     }
 
-    public void deletePersoon(Persoon persoon) {
+    public void deleteWedstrijd(Wedstrijd wedstrijd) {
         entityManager.getTransaction().begin();
-        entityManager.remove(persoon);
+        entityManager.remove(wedstrijd);
         entityManager.getTransaction().commit();
     }
 }

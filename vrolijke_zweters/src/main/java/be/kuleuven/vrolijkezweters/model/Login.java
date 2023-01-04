@@ -1,4 +1,4 @@
-package be.kuleuven.vrolijkezweters.model.login;
+package be.kuleuven.vrolijkezweters.model;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
