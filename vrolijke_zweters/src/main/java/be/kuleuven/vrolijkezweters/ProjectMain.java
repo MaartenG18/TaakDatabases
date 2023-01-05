@@ -126,9 +126,12 @@ public class ProjectMain extends Application {
         Vrijwilliger vrijwilliger = new Vrijwilliger();
         vrijwilliger.setTaak("Startschot geven");
         vrijwilliger.setPersoon(persoon2);
-        vrijwilliger.setWedstrijd(wedstrijd);
+        vrijwilliger.voegWedstrijdToe(wedstrijd);
+        wedstrijd.voegVrijwilligerToe(vrijwilliger);
 
         vrijwilligerDao.createVrijwilliger(vrijwilliger);
+
+        wedstrijdDao.updateWedstrijd(wedstrijd);
 
 
 

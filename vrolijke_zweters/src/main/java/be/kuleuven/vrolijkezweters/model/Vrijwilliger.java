@@ -4,35 +4,40 @@ import be.kuleuven.vrolijkezweters.model.Persoon;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "vrijwilligers")
+@Table(name = "Vrijwilliger")
 public class Vrijwilliger {
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_spersoonId")
+    @JoinColumn(name = "fk_persoon_id")
     private Persoon persoon;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "wedstrijdId")
-    private Wedstrijd wedstrijd;
 
     @Column(name = "taak")
     private String taak;
 
-    @Column(name = "vrijwilligerId")
+    @Column(name = "vrijwilliger_id")
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int vrijwilligerId;
 
-    public Vrijwilliger() {
+    @ManyToMany(mappedBy = "vrijwilligers")
+    private List<Wedstrijd> wedstrijden;
 
+    public Vrijwilliger() {
+        wedstrijden = new ArrayList<>();
     }
 
-    public Vrijwilliger(Wedstrijd wedstrijd, Persoon persoon, String taak) {
-        this.wedstrijd = wedstrijd;
+    public Vrijwilliger(Persoon persoon, String taak) {
+        wedstrijden = new ArrayList<>();
         this.persoon = persoon;
         this.taak = taak;
+    }
+
+    public void voegWedstrijdToe(Wedstrijd wedstrijd) {
+        wedstrijden.add(wedstrijd);
     }
 
     public Persoon getPersoon() {
@@ -43,12 +48,8 @@ public class Vrijwilliger {
         this.persoon = persoon;
     }
 
-    public Wedstrijd getWedstrijd(){
-        return wedstrijd;
-    }
-
-    public void setWedstrijd(Wedstrijd wedstrijd) {
-        this.wedstrijd = wedstrijd;
+    public List<Wedstrijd> getWedstrijden(){
+        return wedstrijden;
     }
 
     public String getTaak() {

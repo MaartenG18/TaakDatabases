@@ -4,15 +4,15 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "lopers")
+@Table(name = "Loper")
 public class Loper {
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_persoonId")
+    @JoinColumn(name = "persoon_id")
     private Persoon persoon;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "wedstrijdId")
+    @JoinColumn(name = "wedstrijd_id")
     private Wedstrijd wedstrijd;
 
     @Column(name = "fitheid")
@@ -24,7 +24,7 @@ public class Loper {
     @Column(name = "loopnr")
     @Id
     @GeneratedValue
-    private int loopNr;
+    private int loopNummer;
 
     public Loper() {
 

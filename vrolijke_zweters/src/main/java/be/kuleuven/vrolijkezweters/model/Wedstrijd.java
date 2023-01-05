@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "wedstrijden")
+@Table(name = "Wedstrijd")
 public class Wedstrijd {
 
-    @Column(name = "wedstrijdId", nullable = false)
+    @Column(name = "wedstrijd_id", nullable = false)
     @Id
     @GeneratedValue
-    private int wedstrijdId;
+    private int wedstrijd_id;
 
     @Column(name = "inschrijvingsGeld", nullable = false)
     private int inschrijvingsGeld;
@@ -29,15 +29,18 @@ public class Wedstrijd {
     @OneToMany(mappedBy = "wedstrijd")
     private List<Loper> lopers;
 
-    @OneToMany(mappedBy = "wedstrijd")
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Vrijwilliger> vrijwilligers;
 
-    public Wedstrijd() {
 
+    public Wedstrijd() {
+        lopers = new ArrayList<>();
+        vrijwilligers = new ArrayList<>();
     }
 
     public Wedstrijd(int inschrijvingsGeld, String startLocatie, String eindLocatie, String datum) {
         lopers = new ArrayList<>();
+        vrijwilligers = new ArrayList<>();
         this.inschrijvingsGeld = inschrijvingsGeld;
         this.startLocatie = startLocatie;
         this.eindLocatie = eindLocatie;
@@ -51,9 +54,7 @@ public class Wedstrijd {
 
     public void voegVrijwilligerToe(Vrijwilliger vrijwilliger) {
         vrijwilligers.add(vrijwilliger);
-        vrijwilliger.setWedstrijd(this);
     }
-
 
     // ----- Getters -----
 
@@ -63,10 +64,6 @@ public class Wedstrijd {
 
     public List<Vrijwilliger> getVrijwilligers() {
         return vrijwilligers;
-    }
-
-    public int getWedstrijdId() {
-        return wedstrijdId;
     }
 
     public int getInschrijvingsGeld() {
