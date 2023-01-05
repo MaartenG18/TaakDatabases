@@ -28,13 +28,13 @@ public class Etappe {
 
     }
 
-    public Etappe(String locatie) {
+    public Etappe(int lengte, String locatie) {
+        this.lengte = lengte;
         this.locatie = locatie;
     }
 
 
     // ----- Getters & Setters -----
-
 
     public Long getEtappe_id() {
         return etappe_id;

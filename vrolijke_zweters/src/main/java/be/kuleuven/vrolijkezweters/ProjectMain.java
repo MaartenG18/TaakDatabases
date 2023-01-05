@@ -1,10 +1,7 @@
 package be.kuleuven.vrolijkezweters;
 
 import be.kuleuven.vrolijkezweters.controller.LoginController;
-import be.kuleuven.vrolijkezweters.database.LoperDao;
-import be.kuleuven.vrolijkezweters.database.PersoonDao;
-import be.kuleuven.vrolijkezweters.database.VrijwilligerDao;
-import be.kuleuven.vrolijkezweters.database.WedstrijdDao;
+import be.kuleuven.vrolijkezweters.database.*;
 import be.kuleuven.vrolijkezweters.model.*;
 import be.kuleuven.vrolijkezweters.view.LoginView;
 import javafx.application.Application;
@@ -57,6 +54,7 @@ public class ProjectMain extends Application {
         LoperDao loperDao = new LoperDao();
         VrijwilligerDao vrijwilligerDao = new VrijwilligerDao();
         WedstrijdDao wedstrijdDao = new WedstrijdDao();
+        EtappeDao etappeDao = new EtappeDao();
 
         Persoon admin = new Persoon();
         admin.setNaam("Gielkens");
@@ -133,7 +131,26 @@ public class ProjectMain extends Application {
 
         wedstrijdDao.updateWedstrijd(wedstrijd);
 
+        Etappe etappe1 = new Etappe();
+        etappe1.setLengte(2);
+        etappe1.setLocatie("Genk");
 
+        Etappe etappe2 = new Etappe();
+        etappe2.setLengte(2);
+        etappe2.setLocatie("Genk");
+
+        Etappe etappe3 = new Etappe();
+        etappe3.setLengte(2);
+        etappe3.setLocatie("Hasselt");
+
+        Etappe etappe4 = new Etappe();
+        etappe4.setLengte(2);
+        etappe4.setLocatie("Hasselt");
+
+        etappeDao.createEtappe(etappe1);
+        etappeDao.createEtappe(etappe2);
+        etappeDao.createEtappe(etappe3);
+        etappeDao.createEtappe(etappe4);
 
     }
 }

@@ -9,9 +9,10 @@ import java.util.List;
 @Table(name = "Persoon")
 public class Persoon {
 
-    @Column(name = "persoon_id")
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Persoon_GEN")
+    @SequenceGenerator(name = "Persoon_GEN", sequenceName = "Persoon_SEQ")
+    @Column(name = "persoon_id", nullable = false)
     private Long persoon_id;
 
     @Column(name = "naam", nullable = false)
