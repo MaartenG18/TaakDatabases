@@ -6,8 +6,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Login {
+
     private StringProperty email = new SimpleStringProperty("");
     private StringProperty password = new SimpleStringProperty("");
+
+
+    // ----- Getters & Setters -----
 
     public String getEmail() {
         return email.get();

@@ -12,6 +12,9 @@ public class Register {
     private StringProperty gender = new SimpleStringProperty("");
     private ObjectProperty<LocalDate> geboorteDatum = new SimpleObjectProperty<>();
 
+
+    // ----- Getters & Setters -----
+
     public String getEmail() {
         return email.get();
     }

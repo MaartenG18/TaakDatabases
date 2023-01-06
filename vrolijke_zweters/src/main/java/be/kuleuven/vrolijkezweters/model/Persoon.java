@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 @Table(name = "Persoon")
 public class Persoon {
@@ -36,17 +37,18 @@ public class Persoon {
     @Column(name = "admin", nullable = false)
     private boolean admin;
 
-    @OneToMany(mappedBy = "persoon")
+    @OneToMany(mappedBy = "persoon", cascade = CascadeType.ALL)
     private List<Loper> lopers;
 
-    @OneToMany(mappedBy = "persoon")
+    @OneToMany(mappedBy = "persoon", cascade = CascadeType.ALL)
     private List<Vrijwilliger> vrijwilligers;
 
 
     // ----- Constructors -----
 
     public Persoon() {
-
+        lopers = new ArrayList<>();
+        vrijwilligers = new ArrayList<>();
     }
 
     public Persoon(String naam, String voornaam, LocalDate geboorteDatum, String gender, String email, String wachtwoord, boolean admin) {
@@ -76,7 +78,6 @@ public class Persoon {
 
 
     // ----- Getters & Setters -----
-
 
     public Long getPersoon_id() {
         return persoon_id;
@@ -158,13 +159,22 @@ public class Persoon {
         this.vrijwilligers = vrijwilligers;
     }
 
+
+    // ----- ToString -----
+
     @Override
     public String toString() {
         return "Persoon{" +
-                "naam='" + naam + '\'' +
+                "persoon_id=" + persoon_id +
+                ", naam='" + naam + '\'' +
                 ", voornaam='" + voornaam + '\'' +
-                ", gender=" + gender +
                 ", geboorteDatum=" + geboorteDatum +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", wachtwoord='" + wachtwoord + '\'' +
+                ", admin=" + admin +
+                ", lopers=" + lopers +
+                ", vrijwilligers=" + vrijwilligers +
                 '}';
     }
 }

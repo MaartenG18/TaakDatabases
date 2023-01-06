@@ -1,5 +1,6 @@
-package be.kuleuven.vrolijkezweters;
+package be.kuleuven.vrolijkezweters.database;
 
+import be.kuleuven.vrolijkezweters.EntityManagerProvider;
 import be.kuleuven.vrolijkezweters.model.Wedstrijd;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ public class WedstrijdPersistenceTest {
 
     @Test
     public void wedstrijdCanBePersisted() {
-        var testWestrijd = new Wedstrijd(10, "Genk", "Hasselt", "12/12/2022");
-        entityManager.persist(testWestrijd);
+        var testWedstrijd = new Wedstrijd(10, "Genk", "Hasselt", LocalDate.of(2022, 12, 12));
+        entityManager.persist(testWedstrijd);
     }
 }

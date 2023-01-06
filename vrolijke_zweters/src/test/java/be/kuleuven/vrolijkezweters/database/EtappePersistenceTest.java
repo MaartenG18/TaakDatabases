@@ -1,10 +1,13 @@
-package be.kuleuven.vrolijkezweters;
+package be.kuleuven.vrolijkezweters.database;
 
+import be.kuleuven.vrolijkezweters.EntityManagerProvider;
 import be.kuleuven.vrolijkezweters.model.Etappe;
+import be.kuleuven.vrolijkezweters.model.Wedstrijd;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 
 public class EtappePersistenceTest {
 
@@ -17,7 +20,9 @@ public class EtappePersistenceTest {
 
     @Test
     public void etappeCanBePersisted() {
-        var testEtappe = new Etappe(2, "Genk");
+        var testWedstrijd = new Wedstrijd(10, "Genk", "Hasselt", LocalDate.of(2022, 12, 12));
+        var testEtappe = new Etappe(2, "Genk", testWedstrijd);
+        entityManager.persist(testWedstrijd);
         entityManager.persist(testEtappe);
     }
 }

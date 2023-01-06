@@ -11,20 +11,24 @@ import java.util.List;
 @Table(name = "Vrijwilliger")
 public class Vrijwilliger {
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_persoon_id")
-    private Persoon persoon;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Vrijwilliger_GEN")
+    @SequenceGenerator(name = "Vrijwilliger_GEN", sequenceName = "Vrijwilliger_SEQ")
+    @Column(name = "vrijwilliger_id", nullable = false)
+    private Long vrijwilliger_id;
 
-    @Column(name = "taak")
+    @Column(name = "taak", nullable = false)
     private String taak;
 
-    @Column(name = "vrijwilliger_id")
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int vrijwilligerId;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, optional = false)
+    @JoinColumn(name = "persoon_id", nullable = false)
+    private Persoon persoon;
 
-    @ManyToMany(mappedBy = "vrijwilligers")
+    @ManyToMany(mappedBy = "vrijwilligers", cascade = CascadeType.MERGE)
     private List<Wedstrijd> wedstrijden;
+
+
+    // ----- Constructors -----
 
     public Vrijwilliger() {
         wedstrijden = new ArrayList<>();
@@ -36,20 +40,22 @@ public class Vrijwilliger {
         this.taak = taak;
     }
 
+
+    // ----- Methods -----
+
     public void voegWedstrijdToe(Wedstrijd wedstrijd) {
         wedstrijden.add(wedstrijd);
     }
 
-    public Persoon getPersoon() {
-        return persoon;
+
+    // ----- Getters & Setters -----
+
+    public Long getVrijwilliger_id() {
+        return vrijwilliger_id;
     }
 
-    public void setPersoon(Persoon persoon) {
-        this.persoon = persoon;
-    }
-
-    public List<Wedstrijd> getWedstrijden(){
-        return wedstrijden;
+    public void setVrijwilliger_id(Long vrijwilliger_id) {
+        this.vrijwilliger_id = vrijwilliger_id;
     }
 
     public String getTaak() {
@@ -60,10 +66,32 @@ public class Vrijwilliger {
         this.taak = taak;
     }
 
+    public Persoon getPersoon() {
+        return persoon;
+    }
+
+    public void setPersoon(Persoon persoon) {
+        this.persoon = persoon;
+    }
+
+    public List<Wedstrijd> getWedstrijden() {
+        return wedstrijden;
+    }
+
+    public void setWedstrijden(List<Wedstrijd> wedstrijden) {
+        this.wedstrijden = wedstrijden;
+    }
+
+
+    // ----- ToString -----
+
     @Override
     public String toString() {
         return "Vrijwilliger{" +
-                "taak=" + taak +
+                "vrijwilliger_id=" + vrijwilliger_id +
+                ", taak='" + taak + '\'' +
+                ", persoon=" + persoon +
+                ", wedstrijden=" + wedstrijden +
                 '}';
     }
 }

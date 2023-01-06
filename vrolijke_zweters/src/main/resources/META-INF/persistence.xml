@@ -11,6 +11,7 @@
         <class>be.kuleuven.vrolijkezweters.model.Loper</class>
         <class>be.kuleuven.vrolijkezweters.model.Vrijwilliger</class>
         <class>be.kuleuven.vrolijkezweters.model.Etappe</class>
+        <class>be.kuleuven.vrolijkezweters.model.EtappeResultaat</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>

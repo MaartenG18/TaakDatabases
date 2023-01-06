@@ -1,5 +1,6 @@
-package be.kuleuven.vrolijkezweters;
+package be.kuleuven.vrolijkezweters.database;
 
+import be.kuleuven.vrolijkezweters.EntityManagerProvider;
 import be.kuleuven.vrolijkezweters.model.Persoon;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

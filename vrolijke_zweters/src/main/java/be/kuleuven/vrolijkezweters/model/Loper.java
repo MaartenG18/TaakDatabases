@@ -1,19 +1,18 @@
 package be.kuleuven.vrolijkezweters.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Loper")
 public class Loper {
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "persoon_id")
-    private Persoon persoon;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "wedstrijd_id")
-    private Wedstrijd wedstrijd;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Loper_GEN")
+    @SequenceGenerator(name = "Loper_GEN", sequenceName = "Loper_SEQ")
+    @Column(name = "loopnr", nullable = false)
+    private Long loopNummer;
 
     @Column(name = "fitheid")
     private int fitheid;
@@ -21,36 +20,43 @@ public class Loper {
     @Column(name = "gewicht")
     private int gewicht;
 
-    @Column(name = "loopnr")
-    @Id
-    @GeneratedValue
-    private int loopNummer;
+    @ManyToOne(fetch = FetchType.EAGER , cascade = CascadeType.MERGE, optional = false)
+    @JoinColumn(name = "persoon_id", nullable = false)
+    private Persoon persoon;
+
+    @OneToMany(mappedBy = "loper", cascade = CascadeType.ALL)
+    private List<EtappeResultaat> etappeResultaten;
+
+    // ----- Constructors -----
 
     public Loper() {
-
+        etappeResultaten = new ArrayList<>();
     }
 
-    public Loper(Wedstrijd wedstrijd, Persoon persoon, int fitheid, int gewicht) {
-        this.wedstrijd = wedstrijd;
+    public Loper(Persoon persoon, int fitheid, int gewicht) {
+        etappeResultaten = new ArrayList<>();
         this.persoon = persoon;
         this.fitheid = fitheid;
         this.gewicht = gewicht;
     }
 
-    public Persoon getPersoon() {
-        return persoon;
+
+    // ----- Methods -----
+
+    public void voegEtappeResultaatToe(EtappeResultaat etappeResultaat) {
+        etappeResultaten.add(etappeResultaat);
+        etappeResultaat.setLoper(this);
     }
 
-    public void setPersoon(Persoon persoon) {
-        this.persoon = persoon;
+
+    // ----- Getters & Setters -----
+
+    public Long getLoopNummer() {
+        return loopNummer;
     }
 
-    public Wedstrijd getWedstrijd() {
-        return wedstrijd;
-    }
-
-    public void setWedstrijd(Wedstrijd wedstrijd) {
-        this.wedstrijd = wedstrijd;
+    public void setLoopNummer(Long loopNummer) {
+        this.loopNummer = loopNummer;
     }
 
     public int getFitheid() {
@@ -69,11 +75,33 @@ public class Loper {
         this.gewicht = gewicht;
     }
 
+    public Persoon getPersoon() {
+        return persoon;
+    }
+
+    public void setPersoon(Persoon persoon) {
+        this.persoon = persoon;
+    }
+
+    public List<EtappeResultaat> getEtappeResultaten() {
+        return etappeResultaten;
+    }
+
+    public void setEtappeResultaten(List<EtappeResultaat> etappeResultaten) {
+        this.etappeResultaten = etappeResultaten;
+    }
+
+
+    // ----- ToString -----
+
     @Override
     public String toString() {
         return "Loper{" +
-                "fitheid=" + fitheid +
+                "loopNummer=" + loopNummer +
+                ", fitheid=" + fitheid +
                 ", gewicht=" + gewicht +
+                ", persoon=" + persoon +
+                ", etappeResultaten=" + etappeResultaten +
                 '}';
     }
 }
