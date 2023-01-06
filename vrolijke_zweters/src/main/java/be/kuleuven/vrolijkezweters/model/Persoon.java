@@ -173,8 +173,6 @@ public class Persoon {
                 ", email='" + email + '\'' +
                 ", wachtwoord='" + wachtwoord + '\'' +
                 ", admin=" + admin +
-                ", lopers=" + lopers +
-                ", vrijwilligers=" + vrijwilligers +
                 '}';
     }
 }

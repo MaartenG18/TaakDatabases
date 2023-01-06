@@ -59,7 +59,7 @@ public class ProjectMain extends Application {
         admin.setVoornaam("Maarten");
         admin.setGeboorteDatum(LocalDate.of(2020, 1, 8));
         admin.setGender("M");
-        admin.setEmail("admin@vrolijkezweters.be");
+        admin.setEmail("admin@devrolijkezweters.be");
         admin.setWachtwoord("Admin");
         admin.setAdmin(true);
 

@@ -22,8 +22,9 @@ public class EtappeResultaatPersistenceTest {
         var testWedstrijd = new Wedstrijd(10, "Genk", "Hasselt", LocalDate.of(2022, 12, 12));
         var testEtappe = new Etappe(2, "Genk", testWedstrijd);
         var testPersoon = new Persoon("Gielkens", "Maarten", LocalDate.of(2020, 1 , 8), "M", "maarten.gielkens@student.uhasselt.be", "12345", false);
-        var testLoper = new Loper(testPersoon, 70, 95);
+        var testLoper = new Loper(70, 95);
         var testEtappeResultaat = new EtappeResultaat(1800);
+        testLoper.setPersoon(testPersoon);
         testEtappeResultaat.setLoper(testLoper);
         testEtappeResultaat.setEtappe(testEtappe);
         entityManager.persist(testPersoon);

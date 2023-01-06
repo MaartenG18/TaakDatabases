@@ -34,9 +34,8 @@ public class Vrijwilliger {
         wedstrijden = new ArrayList<>();
     }
 
-    public Vrijwilliger(Persoon persoon, String taak) {
+    public Vrijwilliger(String taak) {
         wedstrijden = new ArrayList<>();
-        this.persoon = persoon;
         this.taak = taak;
     }
 

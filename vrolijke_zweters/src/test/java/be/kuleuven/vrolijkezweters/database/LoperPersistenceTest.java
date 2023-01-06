@@ -22,7 +22,8 @@ public class LoperPersistenceTest {
     @Test
     public void loperCanBePersisted() {
         var testPersoon = new Persoon("Gielkens", "Maarten", LocalDate.of(2020, 1 , 8), "M", "maarten.gielkens@student.uhasselt.be", "12345", false);
-        var testLoper = new Loper(testPersoon, 70, 95);
+        var testLoper = new Loper(70, 95);
+        testLoper.setPersoon(testPersoon);
         entityManager.persist(testPersoon);
         entityManager.persist(testLoper);
     }

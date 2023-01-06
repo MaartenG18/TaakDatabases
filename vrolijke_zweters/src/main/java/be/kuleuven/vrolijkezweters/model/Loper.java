@@ -33,9 +33,8 @@ public class Loper {
         etappeResultaten = new ArrayList<>();
     }
 
-    public Loper(Persoon persoon, int fitheid, int gewicht) {
+    public Loper(int fitheid, int gewicht) {
         etappeResultaten = new ArrayList<>();
-        this.persoon = persoon;
         this.fitheid = fitheid;
         this.gewicht = gewicht;
     }

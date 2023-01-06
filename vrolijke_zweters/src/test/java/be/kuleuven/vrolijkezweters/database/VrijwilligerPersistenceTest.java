@@ -24,9 +24,10 @@ public class VrijwilligerPersistenceTest {
     public void vrijwilligerCanBePersisted() {
         var testPersoon = new Persoon("Gielkens", "Maarten", LocalDate.of(2020, 1 , 8), "M", "maarten.gielkens@student.uhasselt.be", "12345", false);
         var testWedstrijd = new Wedstrijd(10, "Genk", "Hasselt", LocalDate.of(2022, 12, 12));
-        var testVrijwilliger = new Vrijwilliger(testPersoon, "Startschot geven");
+        var testVrijwilliger = new Vrijwilliger("Startschot geven");
         testVrijwilliger.voegWedstrijdToe(testWedstrijd);
         testWedstrijd.voegVrijwilligerToe(testVrijwilliger);
+        testVrijwilliger.setPersoon(testPersoon);
         entityManager.persist(testPersoon);
         entityManager.persist(testVrijwilliger);
     }

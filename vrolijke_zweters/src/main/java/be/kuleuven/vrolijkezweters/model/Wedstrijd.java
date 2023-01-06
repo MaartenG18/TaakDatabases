@@ -130,8 +130,6 @@ public class Wedstrijd {
                 ", startLocatie='" + startLocatie + '\'' +
                 ", eindLocatie='" + eindLocatie + '\'' +
                 ", datum='" + datum + '\'' +
-                ", etappes=" + etappes +
-                ", vrijwilligers=" + vrijwilligers +
                 '}';
     }
 }
