@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="800" prefWidth="1200" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-    <Text layoutX="50.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0"
-          text="Je deelnames zie je binnenkort hier" textAlignment="CENTER" wrappingWidth="312.03125">
+<AnchorPane prefHeight="800" prefWidth="1200" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <Text layoutX="88.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mijn deelnames" wrappingWidth="511.231201171875">
         <font>
-            <Font size="24.0"/>
+            <Font size="48.0" />
         </font>
     </Text>
+   <Text layoutX="88.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Als loper" wrappingWidth="226.43121337890625">
+      <font>
+         <Font size="36.0" />
+      </font>
+   </Text>
+   <Text layoutX="88.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Als vrijwilliger" wrappingWidth="241.6312255859375">
+      <font>
+         <Font size="36.0" />
+      </font>
+   </Text>
+   <TableView fx:id="table_loper" layoutX="88.0" layoutY="210.0" prefHeight="200.0" prefWidth="478.0">
+     <columns>
+       <TableColumn prefWidth="75.0" text="C1" />
+       <TableColumn prefWidth="75.0" text="C2" />
+     </columns>
+   </TableView>
+   <TableView fx:id="table_vrijwilliger" layoutX="88.0" layoutY="490.0" prefHeight="200.0" prefWidth="478.0">
+      <columns>
+         <TableColumn prefWidth="75.0" text="C1" />
+         <TableColumn prefWidth="75.0" text="C2" />
+      </columns>
+   </TableView>
 </AnchorPane>

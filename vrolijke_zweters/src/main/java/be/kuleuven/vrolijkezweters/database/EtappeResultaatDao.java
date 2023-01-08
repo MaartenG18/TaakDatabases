@@ -1,10 +1,12 @@
 package be.kuleuven.vrolijkezweters.database;
 
 import be.kuleuven.vrolijkezweters.EntityManagerProvider;
+import be.kuleuven.vrolijkezweters.model.Etappe;
 import be.kuleuven.vrolijkezweters.model.EtappeResultaat;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.List;
 
 public class EtappeResultaatDao {
 
@@ -27,6 +29,7 @@ public class EtappeResultaatDao {
             return null;
         }
     }
+
 
     public void createEtappeResultaat(EtappeResultaat etappeResultaat) {
         entityManager.getTransaction().begin();

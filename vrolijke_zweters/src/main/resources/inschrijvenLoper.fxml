@@ -21,11 +21,11 @@
    </Text>
    <TableView fx:id="table_wedstrijden" layoutX="64.0" layoutY="222.0" prefHeight="178.0">
      <columns>
-       <TableColumn fx:id="table_id" prefWidth="70.0" text="id" />
-       <TableColumn fx:id="table_datum" minWidth="0.0" prefWidth="150.0" text="datum" />
-         <TableColumn fx:id="table_startlocatie" prefWidth="210.0" text="startlocatie" />
-         <TableColumn fx:id="table_eindlocatie" prefWidth="210.0" text="eindlocatie" />
-         <TableColumn fx:id="table_inschrijvingsgeld" prefWidth="140.0" text="inschrijvingsgeld" />
+       <TableColumn fx:id="table_id" prefWidth="50.0" style="-fx-alignment: CENTER;" text="id" />
+       <TableColumn fx:id="table_datum" minWidth="0.0" prefWidth="120.0" style="-fx-alignment: CENTER;" text="datum" />
+       <TableColumn fx:id="table_inschrijvingsgeld" prefWidth="150.0" style="-fx-alignment: CENTER;" text="inschrijvingsgeld (in €)" />
+       <TableColumn fx:id="table_startlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="startlocatie" />
+       <TableColumn fx:id="table_eindlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="eindlocatie" />
      </columns>
    </TableView>
    <Text layoutX="64.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extra gegevens om in te schrijven" wrappingWidth="628.0311889648438">

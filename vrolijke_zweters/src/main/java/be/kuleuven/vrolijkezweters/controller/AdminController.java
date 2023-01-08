@@ -14,12 +14,12 @@ public class AdminController {
     @FXML
     private Button btnWedstrijden;
     @FXML
-    private Button btnBeheerLopers;
+    private Button btn_beheerLopers;
     @FXML
     private Button btnConfigAttaches;
 
     public void initialize() {
-        btnBeheerLopers.setOnAction(e -> showBeheerScherm("lopers"));
+        btn_beheerLopers.setOnAction(e -> showBeheerScherm("lopers"));
         btnWedstrijden.setOnAction(e -> showBeheerScherm("wedstrijden"));
         btnConfigAttaches.setOnAction(e -> showBeheerScherm("attaches"));
     }

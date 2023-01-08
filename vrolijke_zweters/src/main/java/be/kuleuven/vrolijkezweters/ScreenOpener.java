@@ -130,7 +130,7 @@ public class ScreenOpener {
         try {
             Stage stage = new Stage();
             InschrijvenLoperView inschrijvenLoperView = new InschrijvenLoperView(stage);
-            InschrijvenLoperController inschrijvenLoperController = new InschrijvenLoperController();
+            InschrijvenLoperController inschrijvenLoperController = new InschrijvenLoperController(inschrijvenLoperView, persoon);
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("inschrijvenLoper.fxml"));
             fxmlLoader.setController(inschrijvenLoperController);
@@ -147,7 +147,7 @@ public class ScreenOpener {
         try {
             Stage stage = new Stage();
             InschrijvenVrijwilligerView inschrijvenVrijwilligerView = new InschrijvenVrijwilligerView(stage);
-            InschrijvenVrijwilligerController inschrijvenVrijwilligerController = new InschrijvenVrijwilligerController();
+            InschrijvenVrijwilligerController inschrijvenVrijwilligerController = new InschrijvenVrijwilligerController(inschrijvenVrijwilligerView, persoon);
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("inschrijvenVrijwilliger.fxml"));
             fxmlLoader.setController(inschrijvenVrijwilligerController);
@@ -164,7 +164,7 @@ public class ScreenOpener {
         try {
             Stage stage = new Stage();
             DeelnamesView deelnamesView = new DeelnamesView(stage);
-            DeelnamesController deelnamesController = new DeelnamesController();
+            DeelnamesController deelnamesController = new DeelnamesController(persoon);
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("deelnames.fxml"));
             fxmlLoader.setController(deelnamesController);

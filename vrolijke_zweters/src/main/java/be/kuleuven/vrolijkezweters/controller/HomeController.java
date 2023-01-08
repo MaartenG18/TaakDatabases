@@ -86,17 +86,20 @@ public class HomeController {
             btnAdmin.setVisible(true);
         }
 
-        btnAdmin.setOnAction(e -> new ScreenOpener("admin"));
-        btnInschrijvenLoper.setOnAction(e -> new ScreenOpener("inschrijvenLoper"));
-        btnInschrijvenVrijwilliger.setOnAction(e -> new ScreenOpener("inschrijvenVrijwilliger"));
-        btnDeelnames.setOnAction(e -> new ScreenOpener("deelnames"));
+        btnAdmin.setOnAction(e -> new ScreenOpener("admin", user));
+        btnInschrijvenLoper.setOnAction(e -> new ScreenOpener("inschrijvenLoper", user));
+        btnInschrijvenVrijwilliger.setOnAction(e -> new ScreenOpener("inschrijvenVrijwilliger", user));
+        btnDeelnames.setOnAction(e -> new ScreenOpener("deelnames", user));
 
         btnUitloggen.setOnAction(e -> {
             new ScreenOpener("login");
             view.stop();
         });
 
+        toonVolgendeWedstrijd();
+    }
 
+    private void toonVolgendeWedstrijd() {
         WedstrijdDao wedstrijdDao = new WedstrijdDao();
 
         List<Wedstrijd> wedstrijdList = wedstrijdDao.findAlleWedstrijden();

@@ -16,12 +16,12 @@ public class WedstrijdDao {
         this.entityManager = EntityManagerProvider.getEntityManager();
     }
 
-    public Wedstrijd findWedstrijdByStartLocation(String location) {
+    public Wedstrijd findWedstrijdById(long id) {
         var criteriaBuilder = entityManager.getCriteriaBuilder();
         var query = criteriaBuilder.createQuery(Wedstrijd.class);
         var root = query.from(Wedstrijd.class);
 
-        query.where(criteriaBuilder.equal(root.get("startLocatie"), location));
+        query.where(criteriaBuilder.equal(root.get("wedstrijd_id"), id));
 
         try {
             return entityManager.createQuery(query).getSingleResult();

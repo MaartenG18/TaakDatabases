@@ -5,6 +5,7 @@ import be.kuleuven.vrolijkezweters.model.Etappe;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.List;
 
 public class EtappeDao {
 
@@ -27,6 +28,21 @@ public class EtappeDao {
             return null;
         }
     }
+
+    public List<Etappe> findAllEtappesFromWedstrijdWithId(Long wedstrijd_id) {
+        var criteriaBuilder = entityManager.getCriteriaBuilder();
+        var query = criteriaBuilder.createQuery(Etappe.class);
+        var root = query.from(Etappe.class);
+
+        query.where(criteriaBuilder.equal(root.get("wedstrijd").get("id"), wedstrijd_id));
+
+        try {
+            return entityManager.createQuery(query).getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
 
     public void createEtappe(Etappe etappe) {
         entityManager.getTransaction().begin();

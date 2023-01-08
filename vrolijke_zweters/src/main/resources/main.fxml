@@ -12,11 +12,11 @@
 <AnchorPane prefHeight="800" prefWidth="1200" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="1200.0">
-         <Button fx:id="btnInschrijvenLoper" text="Inschrijven loper" />
-         <Button fx:id="btnInschrijvenVrijwilliger" mnemonicParsing="false" text="Inschrijven vrijwilliger" />
+         <Button fx:id="btnInschrijvenLoper" text="Inschrijven als loper" />
+         <Button fx:id="btnInschrijvenVrijwilliger" mnemonicParsing="false" text="Inschrijven als vrijwilliger" />
          <Button fx:id="btnDeelnames" text="Mijn deelnames" />
          <Pane HBox.hgrow="ALWAYS" />
-         <Button fx:id="btnAdmin" text="Admin Paneel" visible="false" />
+         <Button fx:id="btnAdmin" text="Admin paneel" visible="false" />
          <Button fx:id="btnUitloggen" text="Uitloggen" />
       </ToolBar>
       <AnchorPane layoutY="40.0" prefHeight="760.0" prefWidth="1200.0">
