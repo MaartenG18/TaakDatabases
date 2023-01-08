@@ -12,7 +12,7 @@
 <AnchorPane prefHeight="800" prefWidth="1200" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="1200.0">
-         <Button fx:id="btnInschrijvingen" text="Inschrijven" />
+         <Button fx:id="btnInschrijven" text="Inschrijven" />
          <Button fx:id="btnDeelnames" text="Mijn deelnames" />
          <Pane HBox.hgrow="ALWAYS" />
          <Button fx:id="btnAdmin" text="Admin Paneel" visible="false" />

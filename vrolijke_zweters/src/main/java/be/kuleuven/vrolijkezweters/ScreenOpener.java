@@ -1,15 +1,10 @@
 package be.kuleuven.vrolijkezweters;
 
-import be.kuleuven.vrolijkezweters.controller.AdminController;
-import be.kuleuven.vrolijkezweters.controller.HomeController;
-import be.kuleuven.vrolijkezweters.controller.LoginController;
-import be.kuleuven.vrolijkezweters.controller.RegisterController;
+import be.kuleuven.vrolijkezweters.controller.*;
 import be.kuleuven.vrolijkezweters.model.Login;
 import be.kuleuven.vrolijkezweters.model.Persoon;
 import be.kuleuven.vrolijkezweters.model.Register;
-import be.kuleuven.vrolijkezweters.view.HomeView;
-import be.kuleuven.vrolijkezweters.view.LoginView;
-import be.kuleuven.vrolijkezweters.view.RegisterView;
+import be.kuleuven.vrolijkezweters.view.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -48,20 +43,27 @@ public class ScreenOpener {
             case "admin":
                 openAdminScreen();
                 break;
+            case "inschrijven":
+                openInschrijvenScreen();
+                break;
+            case "deelnames":
+                openMijnDeelnamesScreen();
+                break;
         }
     }
 
-    private void openHomeScreen() {
+    private void openLoginScreen() {
         try {
             Stage stage = new Stage();
-            HomeView homeView = new HomeView(stage);
-            HomeController homeController = new HomeController(homeView, persoon);
+            Login loginModel = new Login();
+            LoginView loginView = new LoginView(stage, loginModel);
+            LoginController loginController = new LoginController(loginModel, loginView);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("main.fxml"));
-            fxmlLoader.setController(homeController);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("login.fxml"));
+            fxmlLoader.setController(loginController);
             Parent root = fxmlLoader.load();
-            homeView.setRoot(root);
-            homeView.start();
+            loginView.setRoot(root);
+            loginView.start();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -86,18 +88,17 @@ public class ScreenOpener {
         }
     }
 
-    private void openLoginScreen() {
+    private void openHomeScreen() {
         try {
             Stage stage = new Stage();
-            Login loginModel = new Login();
-            LoginView loginView = new LoginView(stage, loginModel);
-            LoginController loginController = new LoginController(loginModel, loginView);
+            HomeView homeView = new HomeView(stage);
+            HomeController homeController = new HomeController(homeView, persoon);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("login.fxml"));
-            fxmlLoader.setController(loginController);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("main.fxml"));
+            fxmlLoader.setController(homeController);
             Parent root = fxmlLoader.load();
-            loginView.setRoot(root);
-            loginView.start();
+            homeView.setRoot(root);
+            homeView.start();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -116,6 +117,40 @@ public class ScreenOpener {
             stage.setScene(scene);
             stage.setTitle("De Vrolijke Zweters - Admin");
             stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openInschrijvenScreen() {
+        try {
+            Stage stage = new Stage();
+            InschrijvenView inschrijvenView = new InschrijvenView(stage);
+            InschrijvenController inschrijvenController = new InschrijvenController();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("inschrijven.fxml"));
+            fxmlLoader.setController(inschrijvenController);
+            Parent root = fxmlLoader.load();
+            inschrijvenView.setRoot(root);
+            inschrijvenView.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openMijnDeelnamesScreen() {
+        try {
+            Stage stage = new Stage();
+            DeelnamesView deelnamesView = new DeelnamesView(stage);
+            DeelnamesController deelnamesController = new DeelnamesController();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("deelnames.fxml"));
+            fxmlLoader.setController(deelnamesController);
+            Parent root = fxmlLoader.load();
+            deelnamesView.setRoot(root);
+            deelnamesView.start();
 
         } catch (IOException e) {
             e.printStackTrace();
