@@ -6,20 +6,14 @@ import be.kuleuven.vrolijkezweters.database.WedstrijdDao;
 import be.kuleuven.vrolijkezweters.model.Persoon;
 import be.kuleuven.vrolijkezweters.model.Wedstrijd;
 import be.kuleuven.vrolijkezweters.view.HomeView;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 
 public class HomeController {
 
@@ -30,7 +24,10 @@ public class HomeController {
     private URL location;
 
     @FXML
-    private Button btnInschrijven;
+    private Button btnInschrijvenLoper;
+
+    @FXML
+    private Button btnInschrijvenVrijwilliger;
 
     @FXML
     private Button btnDeelnames;
@@ -70,7 +67,8 @@ public class HomeController {
 
     @FXML
     void initialize() {
-        assert btnInschrijven != null : "fx:id=\"btnInschrijven\" was not injected: check your FXML file 'main.fxml'.";
+        assert btnInschrijvenLoper != null : "fx:id=\"btnInschrijvenLoper\" was not injected: check your FXML file 'main.fxml'.";
+        assert btnInschrijvenVrijwilliger != null : "fx:id=\"btnInschrijvenVrijwilliger\" was not injected: check your FXML file 'main.fxml'.";
         assert btnDeelnames != null : "fx:id=\"btnDeelnames\" was not injected: check your FXML file 'main.fxml'.";
         assert btnAdmin != null : "fx:id=\"btnAdmin\" was not injected: check your FXML file 'main.fxml'.";
         assert btnUitloggen != null : "fx:id=\"btnUitloggen\" was not injected: check your FXML file 'main.fxml'.";
@@ -89,7 +87,8 @@ public class HomeController {
         }
 
         btnAdmin.setOnAction(e -> new ScreenOpener("admin"));
-        btnInschrijven.setOnAction(e -> new ScreenOpener("inschrijven"));
+        btnInschrijvenLoper.setOnAction(e -> new ScreenOpener("inschrijvenLoper"));
+        btnInschrijvenVrijwilliger.setOnAction(e -> new ScreenOpener("inschrijvenVrijwilliger"));
         btnDeelnames.setOnAction(e -> new ScreenOpener("deelnames"));
 
         btnUitloggen.setOnAction(e -> {

@@ -43,8 +43,11 @@ public class ScreenOpener {
             case "admin":
                 openAdminScreen();
                 break;
-            case "inschrijven":
-                openInschrijvenScreen();
+            case "inschrijvenLoper":
+                openInschrijvenLoperScreen();
+                break;
+            case "inschrijvenVrijwilliger":
+                openInschrijvenVrijwilligerScreen();
                 break;
             case "deelnames":
                 openMijnDeelnamesScreen();
@@ -123,17 +126,34 @@ public class ScreenOpener {
         }
     }
 
-    private void openInschrijvenScreen() {
+    private void openInschrijvenLoperScreen() {
         try {
             Stage stage = new Stage();
-            InschrijvenView inschrijvenView = new InschrijvenView(stage);
-            InschrijvenController inschrijvenController = new InschrijvenController();
+            InschrijvenLoperView inschrijvenLoperView = new InschrijvenLoperView(stage);
+            InschrijvenLoperController inschrijvenLoperController = new InschrijvenLoperController();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("inschrijven.fxml"));
-            fxmlLoader.setController(inschrijvenController);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("inschrijvenLoper.fxml"));
+            fxmlLoader.setController(inschrijvenLoperController);
             Parent root = fxmlLoader.load();
-            inschrijvenView.setRoot(root);
-            inschrijvenView.start();
+            inschrijvenLoperView.setRoot(root);
+            inschrijvenLoperView.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openInschrijvenVrijwilligerScreen() {
+        try {
+            Stage stage = new Stage();
+            InschrijvenVrijwilligerView inschrijvenVrijwilligerView = new InschrijvenVrijwilligerView(stage);
+            InschrijvenVrijwilligerController inschrijvenVrijwilligerController = new InschrijvenVrijwilligerController();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("inschrijvenVrijwilliger.fxml"));
+            fxmlLoader.setController(inschrijvenVrijwilligerController);
+            Parent root = fxmlLoader.load();
+            inschrijvenVrijwilligerView.setRoot(root);
+            inschrijvenVrijwilligerView.start();
 
         } catch (IOException e) {
             e.printStackTrace();

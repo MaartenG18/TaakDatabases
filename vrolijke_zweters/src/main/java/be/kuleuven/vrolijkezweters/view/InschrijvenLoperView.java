@@ -4,16 +4,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class InschrijvenView extends Stage {
+public class InschrijvenLoperView extends Stage {
     private Stage stage;
     private Scene scene;
 
-    public InschrijvenView(Stage stage) {
+    public InschrijvenLoperView(Stage stage) {
         this.stage = stage;
     }
 
     public void start() {
-        stage.setTitle("De Vrolijke Zweters - Inschrijven");
+        stage.setTitle("De Vrolijke Zweters - Inschrijven loper");
         stage.setResizable(false);
         stage.show();
     }
