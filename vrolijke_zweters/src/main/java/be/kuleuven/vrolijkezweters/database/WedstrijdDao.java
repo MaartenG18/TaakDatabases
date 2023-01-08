@@ -6,6 +6,8 @@ import be.kuleuven.vrolijkezweters.model.Wedstrijd;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import java.net.http.WebSocket;
+import java.time.LocalDate;
+import java.util.List;
 
 public class WedstrijdDao {
     private final EntityManager entityManager;
@@ -28,7 +30,7 @@ public class WedstrijdDao {
         }
     }
 
-    public Wedstrijd findWedstrijdByDate(String datum) {
+    public Wedstrijd findWedstrijdByDate(LocalDate datum) {
         var criteriaBuilder = entityManager.getCriteriaBuilder();
         var query = criteriaBuilder.createQuery(Wedstrijd.class);
         var root = query.from(Wedstrijd.class);
@@ -37,6 +39,18 @@ public class WedstrijdDao {
 
         try {
             return entityManager.createQuery(query).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<Wedstrijd> findAlleWedstrijden() {
+        var criteriaBuilder = entityManager.getCriteriaBuilder();
+        var query = criteriaBuilder.createQuery(Wedstrijd.class);
+        var root = query.from(Wedstrijd.class);
+
+        try {
+            return entityManager.createQuery(query).getResultList();
         } catch (NoResultException e) {
             return null;
         }
