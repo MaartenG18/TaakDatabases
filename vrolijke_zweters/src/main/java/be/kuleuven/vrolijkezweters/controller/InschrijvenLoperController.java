@@ -114,7 +114,6 @@ public class InschrijvenLoperController {
     private void inschrijven() {
         LoperDao loperDao = new LoperDao();
         WedstrijdDao wedstrijdDao = new WedstrijdDao();
-        EtappeDao etappeDao = new EtappeDao();
         EtappeResultaatDao etappeResultaatDao = new EtappeResultaatDao();
 
         if (txt_id.getText().isEmpty()) {
@@ -135,15 +134,15 @@ public class InschrijvenLoperController {
 
                 loperDao.createLoper(newLoper);
 
-                //werkt nog niet
-                /*List<Etappe> etappeList = etappeDao.findAllEtappesFromWedstrijdWithId(wedstrijdId);
+                List<Etappe> etappeList = wedstrijd.getEtappes();
                 for (Etappe etappe : etappeList) {
                     EtappeResultaat etappeResultaat = new EtappeResultaat();
                     etappeResultaat.setTijd(9999);
+
                     etappe.voegEtappeResultaatToe(etappeResultaat);
                     newLoper.voegEtappeResultaatToe(etappeResultaat);
                     etappeResultaatDao.createEtappeResultaat(etappeResultaat);
-                }*/
+                }
 
                 wedstrijdDao.updateWedstrijd(wedstrijd);
 
