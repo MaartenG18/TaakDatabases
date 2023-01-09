@@ -33,6 +33,9 @@ public class HomeController {
     private Button btnDeelnames;
 
     @FXML
+    private Button btnGegevens;
+
+    @FXML
     private Button btnAdmin;
 
     @FXML
@@ -70,6 +73,7 @@ public class HomeController {
         assert btnInschrijvenLoper != null : "fx:id=\"btnInschrijvenLoper\" was not injected: check your FXML file 'main.fxml'.";
         assert btnInschrijvenVrijwilliger != null : "fx:id=\"btnInschrijvenVrijwilliger\" was not injected: check your FXML file 'main.fxml'.";
         assert btnDeelnames != null : "fx:id=\"btnDeelnames\" was not injected: check your FXML file 'main.fxml'.";
+        assert btnGegevens != null : "fx:id=\"btnGegevens\" was not injected: check your FXML file 'main.fxml'.";
         assert btnAdmin != null : "fx:id=\"btnAdmin\" was not injected: check your FXML file 'main.fxml'.";
         assert btnUitloggen != null : "fx:id=\"btnUitloggen\" was not injected: check your FXML file 'main.fxml'.";
         assert txt_titel != null : "fx:id=\"txt_titel\" was not injected: check your FXML file 'main.fxml'.";
@@ -90,6 +94,7 @@ public class HomeController {
         btnInschrijvenLoper.setOnAction(e -> new ScreenOpener("inschrijvenLoper", user));
         btnInschrijvenVrijwilliger.setOnAction(e -> new ScreenOpener("inschrijvenVrijwilliger", user));
         btnDeelnames.setOnAction(e -> new ScreenOpener("deelnames", user));
+        btnGegevens.setOnAction(e -> new ScreenOpener("gegevens", user));
 
         btnUitloggen.setOnAction(e -> {
             new ScreenOpener("login");

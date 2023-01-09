@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="800" prefWidth="1200" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <Text layoutX="88.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mijn deelnames" wrappingWidth="511.231201171875">
+    <Text layoutX="64.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mijn deelnames" wrappingWidth="511.231201171875">
         <font>
             <Font size="48.0" />
         </font>

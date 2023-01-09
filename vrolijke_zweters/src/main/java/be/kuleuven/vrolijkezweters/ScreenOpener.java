@@ -52,6 +52,9 @@ public class ScreenOpener {
             case "deelnames":
                 openMijnDeelnamesScreen();
                 break;
+            case "gegevens":
+                openGegevensScreen();
+                break;
         }
     }
 
@@ -171,6 +174,23 @@ public class ScreenOpener {
             Parent root = fxmlLoader.load();
             deelnamesView.setRoot(root);
             deelnamesView.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openGegevensScreen() {
+        try {
+            Stage stage = new Stage();
+            GegevensView gegevensView = new GegevensView(stage);
+            GegevensController gegevensController = new GegevensController(persoon);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("gegevens.fxml"));
+            fxmlLoader.setController(gegevensController);
+            Parent root = fxmlLoader.load();
+            gegevensView.setRoot(root);
+            gegevensView.start();
 
         } catch (IOException e) {
             e.printStackTrace();

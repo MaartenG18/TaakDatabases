@@ -15,6 +15,7 @@
          <Button fx:id="btnInschrijvenLoper" text="Inschrijven als loper" />
          <Button fx:id="btnInschrijvenVrijwilliger" mnemonicParsing="false" text="Inschrijven als vrijwilliger" />
          <Button fx:id="btnDeelnames" text="Mijn deelnames" />
+         <Button fx:id="btnGegevens" mnemonicParsing="false" text="Mijn persoonlijke gegevens" textAlignment="CENTER" />
          <Pane HBox.hgrow="ALWAYS" />
          <Button fx:id="btnAdmin" text="Admin paneel" visible="false" />
          <Button fx:id="btnUitloggen" text="Uitloggen" />
