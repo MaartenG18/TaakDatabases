@@ -33,13 +33,19 @@ public class InschrijvenLoperController {
     private TableColumn<Wedstrijd, LocalDate> table_datum;
 
     @FXML
-    private TableColumn<Wedstrijd, Integer> table_inschrijvingsgeld;
+    private TableColumn<Wedstrijd, String> table_naam;
 
     @FXML
     private TableColumn<Wedstrijd, String> table_startlocatie;
 
     @FXML
     private TableColumn<Wedstrijd, String> table_eindlocatie;
+
+    @FXML
+    private TableColumn<Wedstrijd, Integer> table_afstand;
+
+    @FXML
+    private TableColumn<Wedstrijd, Integer> table_inschrijvingsgeld;
 
     @FXML
     private Button btn_inschrijven;
@@ -58,9 +64,11 @@ public class InschrijvenLoperController {
         assert table_wedstrijden != null : "fx:id=\"table_wedstrijden\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
         assert table_id != null : "fx:id=\"table_id\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
         assert table_datum != null : "fx:id=\"table_datum\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert table_inschrijvingsgeld != null : "fx:id=\"table_inschrijvingsgeld\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
+        assert table_naam != null : "fx:id=\"table_naam\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
         assert table_startlocatie != null : "fx:id=\"table_startlocatie\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
         assert table_eindlocatie != null : "fx:id=\"table_eindlocatie\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
+        assert table_afstand != null : "fx:id=\"table_afstand\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
+        assert table_inschrijvingsgeld != null : "fx:id=\"table_inschrijvingsgeld\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
         assert btn_inschrijven != null : "fx:id=\"btn_inschrijven\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
         assert txt_id != null : "fx:id=\"txt_id\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
         assert txt_fitheid != null : "fx:id=\"txt_fitheid\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
@@ -75,15 +83,25 @@ public class InschrijvenLoperController {
     private void voegWedstrijdenToe() {
         WedstrijdDao wedstrijdDao = new WedstrijdDao();
         List<Wedstrijd> wedstrijdList = wedstrijdDao.findAlleWedstrijden();
+
+        for (Wedstrijd wedstrijd : wedstrijdList) {
+            int afstand = 0;
+            for (int j = 0; j < wedstrijd.getEtappes().size(); j++) {
+                afstand += wedstrijd.getEtappes().get(j).getLengte();
+            }
+            wedstrijd.setAfstand(afstand);
+        }
+
         LocalDate huidigeDatum = LocalDate.now();
 
         ObservableList<Wedstrijd> data = FXCollections.observableArrayList();
         table_id.setCellValueFactory(new PropertyValueFactory<Wedstrijd, Integer>("wedstrijd_id"));
         table_datum.setCellValueFactory(new PropertyValueFactory<Wedstrijd, LocalDate>("datum"));
+        table_naam.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("naam"));
         table_startlocatie.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("startLocatie"));
         table_eindlocatie.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("eindLocatie"));
+        table_afstand.setCellValueFactory(new PropertyValueFactory<Wedstrijd, Integer>("afstand"));
         table_inschrijvingsgeld.setCellValueFactory(new PropertyValueFactory<Wedstrijd, Integer>("inschrijvingsgeld"));
-        //nog één voor de naam van de wedstrijd?
 
         for (Wedstrijd wedstrijd : wedstrijdList) {
             if (wedstrijd.getDatum().isAfter(huidigeDatum)) {

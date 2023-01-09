@@ -16,6 +16,9 @@ public class Wedstrijd {
     @Column(name = "wedstrijd_id", nullable = false)
     private int wedstrijd_id;
 
+    @Column(name = "naam", nullable = false)
+    private String naam;
+
     @Column(name = "inschrijvingsgeld", nullable = false)
     private int inschrijvingsgeld;
 
@@ -27,6 +30,8 @@ public class Wedstrijd {
 
     @Column(name = "datum", nullable = false)
     private LocalDate datum;
+
+    private int afstand;
 
     @OneToMany(mappedBy = "wedstrijd", cascade = CascadeType.ALL)
     private List<Etappe> etappes;
@@ -42,9 +47,10 @@ public class Wedstrijd {
         vrijwilligers = new ArrayList<>();
     }
 
-    public Wedstrijd(int inschrijvingsgeld, String startLocatie, String eindLocatie, LocalDate datum) {
+    public Wedstrijd(String naam, int inschrijvingsgeld, String startLocatie, String eindLocatie, LocalDate datum) {
         etappes = new ArrayList<>();
         vrijwilligers = new ArrayList<>();
+        this.naam = naam;
         this.inschrijvingsgeld = inschrijvingsgeld;
         this.startLocatie = startLocatie;
         this.eindLocatie = eindLocatie;
@@ -72,6 +78,14 @@ public class Wedstrijd {
 
     public void setWedstrijd_id(int wedstrijd_id) {
         this.wedstrijd_id = wedstrijd_id;
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
     }
 
     public int getInschrijvingsgeld() {
@@ -122,11 +136,20 @@ public class Wedstrijd {
         this.vrijwilligers = vrijwilligers;
     }
 
+    public int getAfstand() {
+        return afstand;
+    }
+
+    public void setAfstand(int afstand) {
+        this.afstand = afstand;
+    }
+
     @Override
     public String toString() {
         return "Wedstrijd{" +
                 "wedstrijd_id=" + wedstrijd_id +
-                ", inschrijvingsgeld=" + inschrijvingsgeld +
+                ", naam=" + naam +  '\'' +
+                ", inschrijvingsgeld=" + inschrijvingsgeld +  '\'' +
                 ", startLocatie='" + startLocatie + '\'' +
                 ", eindLocatie='" + eindLocatie + '\'' +
                 ", datum='" + datum + '\'' +

@@ -23,8 +23,9 @@
         <columns>
             <TableColumn fx:id="table_id" prefWidth="50.0" style="-fx-alignment: CENTER;" text="id" />
             <TableColumn fx:id="table_datum" minWidth="0.0" prefWidth="120.0" style="-fx-alignment: CENTER;" text="datum" />
+            <TableColumn fx:id="table_naam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="naam" />
             <TableColumn fx:id="table_startlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="startlocatie" />
-            <TableColumn fx:id="table_eindlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="eindlocatie" />
+         <TableColumn fx:id="table_eindlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="eindlocatie" />
         </columns>
     </TableView>
     <Text layoutX="64.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extra gegevens om in te schrijven" wrappingWidth="628.0311889648438">
