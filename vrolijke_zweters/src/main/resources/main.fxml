@@ -14,7 +14,7 @@
       <ToolBar prefHeight="40.0" prefWidth="1200.0">
          <Button fx:id="btnInschrijvenLoper" text="Inschrijven als loper" />
          <Button fx:id="btnInschrijvenVrijwilliger" mnemonicParsing="false" text="Inschrijven als vrijwilliger" />
-         <Button fx:id="btnDeelnames" text="Mijn deelnames" />
+         <Button fx:id="btnDeelnames" text="Mijn inschrijvingen" />
          <Button fx:id="btnGegevens" mnemonicParsing="false" text="Mijn persoonlijke gegevens" textAlignment="CENTER" />
          <Pane HBox.hgrow="ALWAYS" />
          <Button fx:id="btnAdmin" text="Admin paneel" visible="false" />
@@ -32,17 +32,17 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Text fx:id="txt_startlocatie" layoutX="190.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Startlocatie:">
+            <Text fx:id="txt_startlocatie" layoutX="190.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Startlocatie:">
                <font>
                   <Font size="36.0" />
                </font>
             </Text>
-            <Text fx:id="txt_eindlocatie" layoutX="190.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eindlocatie:">
+            <Text fx:id="txt_eindlocatie" layoutX="190.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eindlocatie:">
                <font>
                   <Font size="36.0" />
                </font>
             </Text>
-            <Text fx:id="txt_afstand" layoutX="190.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Afstand:">
+            <Text fx:id="txt_afstand" layoutX="190.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Afstand:">
                <font>
                   <Font size="36.0" />
                </font>
@@ -52,17 +52,27 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label fx:id="label_startlocatie" layoutX="398.0" layoutY="379.0" prefHeight="54.0" prefWidth="610.0" text="geen volgende wedstrijd gevonden">
+            <Label fx:id="label_startlocatie" layoutX="398.0" layoutY="429.0" prefHeight="54.0" prefWidth="610.0" text="geen volgende wedstrijd gevonden">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label fx:id="label_eindlocatie" layoutX="398.0" layoutY="429.0" prefHeight="54.0" prefWidth="610.0" text="geen volgende wedstrijd gevonden">
+            <Label fx:id="label_eindlocatie" layoutX="398.0" layoutY="479.0" prefHeight="54.0" prefWidth="610.0" text="geen volgende wedstrijd gevonden">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label fx:id="label_afstand" layoutX="398.0" layoutY="479.0" prefHeight="54.0" prefWidth="610.0" text="geen volgende wedstrijd gevonden">
+            <Label fx:id="label_afstand" layoutX="398.0" layoutY="529.0" prefHeight="54.0" prefWidth="610.0" text="geen volgende wedstrijd gevonden">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Text fx:id="txt_naam" layoutX="190.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Naam:">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Label fx:id="label_naam" layoutX="398.0" layoutY="376.0" prefHeight="54.0" prefWidth="610.0" text="geen volgende wedstrijd gevonden">
                <font>
                   <Font size="36.0" />
                </font>

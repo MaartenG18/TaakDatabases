@@ -146,6 +146,10 @@ public class InschrijvenLoperController {
 
                 wedstrijdDao.updateWedstrijd(wedstrijd);
 
+                txt_id.setText("");
+                txt_fitheid.setText("");
+                txt_gewicht.setText("");
+
                 showAlertGelukt("Gelukt", "De inschrijving is voltooid!");
             }
         }

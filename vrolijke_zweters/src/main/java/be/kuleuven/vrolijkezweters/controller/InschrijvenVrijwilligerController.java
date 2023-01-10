@@ -112,6 +112,9 @@ public class InschrijvenVrijwilligerController {
                 vrijwilligerDao.createVrijwilliger(newVrijwilliger);
                 wedstrijdDao.updateWedstrijd(wedstrijd);
 
+                txt_id.setText("");
+                txt_taak.setText("");
+
                 showAlertGelukt("Gelukt", "De inschrijving is voltooid!");
             }
         }

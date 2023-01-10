@@ -48,6 +48,9 @@ public class HomeController {
     private Text txt_datum;
 
     @FXML
+    private Text txt_naam;
+
+    @FXML
     private Text txt_startlocatie;
 
     @FXML
@@ -58,6 +61,9 @@ public class HomeController {
 
     @FXML
     private Label label_datum;
+
+    @FXML
+    private Label label_naam;
 
     @FXML
     private Label label_startlocatie;
@@ -85,6 +91,8 @@ public class HomeController {
         assert label_startlocatie != null : "fx:id=\"label_startlocatie\" was not injected: check your FXML file 'main.fxml'.";
         assert label_eindlocatie != null : "fx:id=\"label_eindlocatie\" was not injected: check your FXML file 'main.fxml'.";
         assert label_afstand != null : "fx:id=\"label_afstand\" was not injected: check your FXML file 'main.fxml'.";
+        assert txt_naam != null : "fx:id=\"txt_naam\" was not injected: check your FXML file 'main.fxml'.";
+        assert label_naam != null : "fx:id=\"label_naam\" was not injected: check your FXML file 'main.fxml'.";
 
         if (user.isAdmin()) {
             btnAdmin.setVisible(true);
@@ -126,6 +134,7 @@ public class HomeController {
             }
 
             label_datum.setText(wedstrijd.getDatum().toString());
+            label_naam.setText(wedstrijd.getNaam());
             label_startlocatie.setText(wedstrijd.getStartLocatie());
             label_eindlocatie.setText(wedstrijd.getEindLocatie());
             label_afstand.setText(afstand + " km");

@@ -13,12 +13,12 @@ public class VrijwilligerDao {
         this.entityManager = EntityManagerProvider.getEntityManager();
     }
 
-    public Vrijwilliger findVrijwilligerById(int id) {
+    public Vrijwilliger findVrijwilligerById(Long id) {
         var criteriaBuilder = entityManager.getCriteriaBuilder();
         var query = criteriaBuilder.createQuery(Vrijwilliger.class);
         var root = query.from(Vrijwilliger.class);
 
-        query.where(criteriaBuilder.equal(root.get("vrijwilligerId"), id));
+        query.where(criteriaBuilder.equal(root.get("vrijwilliger_id"), id));
 
         try {
             return entityManager.createQuery(query).getSingleResult();
