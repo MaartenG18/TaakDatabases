@@ -1,8 +1,9 @@
 package be.kuleuven.vrolijkezweters.controller;
 
+import be.kuleuven.vrolijkezweters.database.LoperDao;
 import be.kuleuven.vrolijkezweters.database.PersoonDao;
 import be.kuleuven.vrolijkezweters.database.VrijwilligerDao;
-import be.kuleuven.vrolijkezweters.model.Persoon;
+import be.kuleuven.vrolijkezweters.model.*;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -11,8 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import be.kuleuven.vrolijkezweters.model.Vrijwilliger;
-import be.kuleuven.vrolijkezweters.model.Wedstrijd;
+import be.kuleuven.vrolijkezweters.model.semi.LoperWedstrijd;
 import be.kuleuven.vrolijkezweters.model.semi.VrijwilligerWedstrijd;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,19 +29,19 @@ public class DeelnamesController {
     private URL location;
 
     @FXML
-    private TableView<?> table_loper;
+    private TableView<LoperWedstrijd> table_loper;
 
     @FXML
-    private TableColumn<?, ?> table_loperid;
+    private TableColumn<LoperWedstrijd, Long> table_loperid;
 
     @FXML
-    private TableColumn<?, ?> table_lopernaam;
+    private TableColumn<LoperWedstrijd, String> table_lopernaam;
 
     @FXML
-    private TableColumn<?, ?> table_loperdatum;
+    private TableColumn<LoperWedstrijd, LocalDate> table_loperdatum;
 
     @FXML
-    private TableColumn<?, ?> table_loperresultaat;
+    private TableColumn<LoperWedstrijd, Integer> table_lopertijd;
 
     @FXML
     private TableView<VrijwilligerWedstrijd> table_vrijwilliger;
@@ -76,7 +76,7 @@ public class DeelnamesController {
         assert table_loperid != null : "fx:id=\"table_loperid\" was not injected: check your FXML file 'deelnames.fxml'.";
         assert table_lopernaam != null : "fx:id=\"table_lopernaam\" was not injected: check your FXML file 'deelnames.fxml'.";
         assert table_loperdatum != null : "fx:id=\"table_loperdatum\" was not injected: check your FXML file 'deelnames.fxml'.";
-        assert table_loperresultaat != null : "fx:id=\"table_loperresultaat\" was not injected: check your FXML file 'deelnames.fxml'.";
+        assert table_lopertijd != null : "fx:id=\"table_loperresultaat\" was not injected: check your FXML file 'deelnames.fxml'.";
         assert table_vrijwilliger != null : "fx:id=\"table_vrijwilliger\" was not injected: check your FXML file 'deelnames.fxml'.";
         assert table_vrijwilligerid != null : "fx:id=\"table_vrijwilligerid\" was not injected: check your FXML file 'deelnames.fxml'.";
         assert table_vrijwilligernaam != null : "fx:id=\"table_vrijwilligernaam\" was not injected: check your FXML file 'deelnames.fxml'.";
@@ -87,7 +87,7 @@ public class DeelnamesController {
         assert btn_verwijderenvrijwilliger != null : "fx:id=\"btn_verwijderenvrijwilliger\" was not injected: check your FXML file 'deelnames.fxml'.";
         assert txt_verwijderenvrijwilliger != null : "fx:id=\"txt_verwijderenvrijwilliger\" was not injected: check your FXML file 'deelnames.fxml'.";
 
-        voegInschrijvingenLoperToe();
+        voegInschrijvingenLoperToe(user);
         voegInschrijvingenVrijwilligerToe(user);
 
         btn_verwijderenloper.setOnAction(e -> verwijderInschrijvingLoper());
@@ -95,8 +95,42 @@ public class DeelnamesController {
     }
 
 
-    private void voegInschrijvingenLoperToe() {
+    private void voegInschrijvingenLoperToe(Persoon user) {
+        List<Loper> loperList = user.getLopers();
+        List<LoperWedstrijd> newList = new ArrayList<>();
 
+        for (Loper loper : loperList) {
+            List<EtappeResultaat> etappeResultaatList = loper.getEtappeResultaten();
+
+            int totaleTijd = 0;
+            for (EtappeResultaat etappeResultaat : etappeResultaatList) {
+                totaleTijd += etappeResultaat.getTijd();
+            }
+
+            LoperWedstrijd newElement = new LoperWedstrijd();
+            newElement.setLoopNummer(loper.getLoopNummer());
+            if (etappeResultaatList.size() > 0) {
+                newElement.setDatum(etappeResultaatList.get(0).getEtappe().getWedstrijd().getDatum());
+                newElement.setNaam(etappeResultaatList.get(0).getEtappe().getWedstrijd().getNaam());
+            } else {
+                newElement.setDatum(LocalDate.of(2000, 1, 1));
+                newElement.setNaam("geen naam gevonden");
+            }
+            newElement.setTijd(totaleTijd);
+
+            newList.add(newElement);
+        }
+
+        ObservableList<LoperWedstrijd> data = FXCollections.observableArrayList();
+        table_loperid.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, Long>("loopNummer"));
+        table_loperdatum.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, LocalDate>("datum"));
+        table_lopernaam.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, String>("naam"));
+        table_lopertijd.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, Integer>("tijd"));
+
+        //Collections.sort(newList, (object1, object2) -> object1.getDatum().compareTo(object2.getDatum())); //op datum sorteren, later testen
+
+        data.addAll(newList);
+        table_loper.setItems(data);
     }
 
     private void voegInschrijvingenVrijwilligerToe(Persoon user) {
@@ -123,15 +157,33 @@ public class DeelnamesController {
 
         //Collections.sort(newList, (object1, object2) -> object1.getDatum().compareTo(object2.getDatum())); //op datum sorteren, later testen
 
-        for (VrijwilligerWedstrijd vrijwilligerWedstrijd : newList) {
-            data.add(vrijwilligerWedstrijd);
-        }
-
+        data.addAll(newList);
         table_vrijwilliger.setItems(data);
     }
 
     private void verwijderInschrijvingLoper() {
+        PersoonDao persoonDao = new PersoonDao();
+        LoperDao loperDao = new LoperDao();
+        Long id = Long.valueOf(txt_verwijderenloper.getText());
 
+        if (loperDao.findLoperById(id) == null) {
+            showAlert("Warning!", "Het opgegeven id bestaat niet");
+        } else {
+            Loper loper = loperDao.findLoperById(id);
+            Persoon persoon = loper.getPersoon();
+
+            if (persoon.getPersoon_id() != user.getPersoon_id()) {
+                showAlert("Warning!", "Het opgegeven id klopt niet");
+            } else {
+                loperDao.deleteLoper(loper);
+                persoonDao.updatePersoon(persoon);
+
+                voegInschrijvingenLoperToe(persoon);
+
+                txt_verwijderenloper.setText("");
+                showAlertGelukt("Gelukt", "Het uitschrijven is voltooid!");
+            }
+        }
     }
 
     private void verwijderInschrijvingVrijwilliger() {
@@ -139,19 +191,23 @@ public class DeelnamesController {
         VrijwilligerDao vrijwilligerDao = new VrijwilligerDao();
         Long id = Long.valueOf(txt_verwijderenvrijwilliger.getText());
 
-        Vrijwilliger vrijwilliger = vrijwilligerDao.findVrijwilligerById(id);
-        Persoon persoon = vrijwilliger.getPersoon();
-
-        if (persoon.getPersoon_id() != user.getPersoon_id()) {
-            showAlert("Warning!", "Het opgegeven id klopt niet");
+        if (vrijwilligerDao.findVrijwilligerById(id) == null) {
+            showAlert("Warning!", "Het opgegeven id bestaat niet");
         } else {
-            vrijwilligerDao.deleteVrijwilliger(vrijwilliger);
-            persoonDao.updatePersoon(persoon);
+            Vrijwilliger vrijwilliger = vrijwilligerDao.findVrijwilligerById(id);
+            Persoon persoon = vrijwilliger.getPersoon();
 
-            voegInschrijvingenVrijwilligerToe(persoon);
+            if (persoon.getPersoon_id() != user.getPersoon_id()) {
+                showAlert("Warning!", "Het opgegeven id klopt niet");
+            } else {
+                vrijwilligerDao.deleteVrijwilliger(vrijwilliger);
+                persoonDao.updatePersoon(persoon);
 
-            txt_verwijderenvrijwilliger.setText("");
-            showAlertGelukt("Gelukt", "Het uitschrijven is voltooid!");
+                voegInschrijvingenVrijwilligerToe(persoon);
+
+                txt_verwijderenvrijwilliger.setText("");
+                showAlertGelukt("Gelukt", "Het uitschrijven is voltooid!");
+            }
         }
     }
 

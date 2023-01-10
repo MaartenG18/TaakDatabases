@@ -29,7 +29,7 @@
        <TableColumn fx:id="table_loperid" prefWidth="50.0" style="-fx-alignment: CENTER;" text="id" />
        <TableColumn fx:id="table_lopernaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="naam" />
          <TableColumn fx:id="table_loperdatum" prefWidth="120.0" style="-fx-alignment: CENTER;" text="datum" />
-         <TableColumn fx:id="table_loperresultaat" prefWidth="150.0" style="-fx-alignment: CENTER;" text="resultaat" />
+         <TableColumn fx:id="table_lopertijd" prefWidth="150.0" style="-fx-alignment: CENTER;" text="tijd" />
      </columns>
    </TableView>
    <TableView fx:id="table_vrijwilliger" layoutX="64.0" layoutY="530.0" prefHeight="220.0">

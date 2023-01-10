@@ -13,12 +13,12 @@ public class LoperDao {
         this.entityManager = EntityManagerProvider.getEntityManager();
     }
 
-    public Loper findLoperById(int id) {
+    public Loper findLoperById(Long id) {
         var criteriaBuilder = entityManager.getCriteriaBuilder();
         var query = criteriaBuilder.createQuery(Loper.class);
         var root = query.from(Loper.class);
 
-        query.where(criteriaBuilder.equal(root.get("loopnr"), id));
+        query.where(criteriaBuilder.equal(root.get("loopNummer"), id));
 
         try {
             return entityManager.createQuery(query).getSingleResult();

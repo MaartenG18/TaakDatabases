@@ -79,7 +79,7 @@ public class EtappeResultaat {
                 "etappeResultaat_id=" + etappeResultaat_id +
                 ", tijd=" + tijd +
                 ", etappe=" + etappe +
-                ", loper=" + loper +
+                //", loper=" + loper +
                 '}';
     }
 }
