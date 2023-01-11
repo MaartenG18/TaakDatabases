@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.vrolijkezweters.controller.BeheerTijdenToevoegenController">
+    <children>
+        <Text layoutX="48.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gelopen tijden per etappe toevoegen/aanpassen">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Text>
+        <TextField fx:id="txt_tijd" layoutX="47.0" layoutY="634.0" promptText="tijd (in seconden)" />
+        <Button fx:id="btn_toevoegen" layoutX="209.0" layoutY="633.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Wijzigen" />
+      <TableView fx:id="table_wedstrijd" layoutX="47.0" layoutY="127.0" prefHeight="150.0">
+        <columns>
+          <TableColumn fx:id="table_wedstrijddatum" prefWidth="120.0" style="-fx-alignment: CENTER;" text="datum" />
+          <TableColumn fx:id="table_wedstrijdnaam" prefWidth="250.0" style="-fx-alignment: CENTER;" text="naam" />
+        </columns>
+      </TableView>
+      <TableView fx:id="table_loper" layoutX="47.0" layoutY="465.0" prefHeight="150.0">
+        <columns>
+          <TableColumn fx:id="table_loperachternaam" prefWidth="200.0" style="-fx-alignment: CENTER;" text="achternaam loper" />
+          <TableColumn fx:id="table_lopervoornaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="voornaam" />
+            <TableColumn fx:id="table_lopergeboortedatum" prefWidth="130.0" style="-fx-alignment: CENTER;" text="geboortedatum" />
+        </columns>
+      </TableView>
+      <TableView fx:id="table_etappe" layoutX="47.0" layoutY="296.0" prefHeight="150.0">
+         <columns>
+            <TableColumn fx:id="table_etappelocatie" prefWidth="180.0" style="-fx-alignment: CENTER;" text="locatie etappe" />
+            <TableColumn fx:id="table_etappelengte" prefWidth="100.0" style="-fx-alignment: CENTER;" text="lengte" />
+         </columns>
+      </TableView>
+      <Text layoutX="48.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecteer eerst de wedstrijd, vervolgens de etappe en tot slot de loper">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="btn_selecteerwedstrijd" layoutX="465.0" layoutY="190.0" mnemonicParsing="false" text="Selecteer wedstrijd" />
+      <Button fx:id="btn_selecteerloper" layoutX="571.0" layoutY="528.0" mnemonicParsing="false" text="Selecteer loper" />
+      <Button fx:id="btn_selecteeretappe" layoutX="366.0" layoutY="358.0" mnemonicParsing="false" text="Selecteer etappe" />
+    </children>
+</AnchorPane>

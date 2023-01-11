@@ -26,12 +26,17 @@ public class AdminController {
     private Button btn_accountverwijderen;
 
     @FXML
+    private Button btn_tijdenToevoegen;
+
+    @FXML
     void initialize() {
         assert btn_wachtwoordresetten != null : "fx:id=\"btn_wachtwoordresetten\" was not injected: check your FXML file 'admin.fxml'.";
         assert btn_accountverwijderen != null : "fx:id=\"btn_accountverwijderen\" was not injected: check your FXML file 'admin.fxml'.";
+        assert btn_tijdenToevoegen != null : "fx:id=\"btn_tijdenToevoegen\" was not injected: check your FXML file 'admin.fxml'.";
 
         btn_wachtwoordresetten.setOnAction(e -> showBeheerScherm("wachtwoordReset"));
         btn_accountverwijderen.setOnAction(e -> showBeheerScherm("accountVerwijderen"));
+        btn_tijdenToevoegen.setOnAction(e -> showBeheerScherm("tijdenToevoegen"));
     }
 
     private void showBeheerScherm(String id) {
