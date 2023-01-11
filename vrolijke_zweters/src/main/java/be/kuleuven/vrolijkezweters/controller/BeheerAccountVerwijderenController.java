@@ -11,7 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class BeheerWachtwoordReset {
+public class BeheerAccountVerwijderenController {
 
     @FXML
     private ResourceBundle resources;
@@ -26,19 +26,19 @@ public class BeheerWachtwoordReset {
     private TextField txt_achternaam;
 
     @FXML
-    private Button btn_reset;
+    private Button btn_verwijder;
 
     @FXML
     void initialize() {
-        assert txt_voornaam != null : "fx:id=\"txt_voornaam\" was not injected: check your FXML file 'beheerwachtwoordreset.fxml'.";
-        assert txt_achternaam != null : "fx:id=\"txt_achternaam\" was not injected: check your FXML file 'beheerwachtwoordreset.fxml'.";
-        assert btn_reset != null : "fx:id=\"btn_reset\" was not injected: check your FXML file 'beheerwachtwoordreset.fxml'.";
+        assert txt_voornaam != null : "fx:id=\"txt_voornaam\" was not injected: check your FXML file 'beheeraccountverwijderen.fxml'.";
+        assert txt_achternaam != null : "fx:id=\"txt_achternaam\" was not injected: check your FXML file 'beheeraccountverwijderen.fxml'.";
+        assert btn_verwijder != null : "fx:id=\"btn_verwijder\" was not injected: check your FXML file 'beheeraccountverwijderen.fxml'.";
 
-        btn_reset.setOnAction(e -> resetWachtwoord());
+        btn_verwijder.setOnAction(e -> verwijderAccount());
     }
 
 
-    private void resetWachtwoord() {
+    private void verwijderAccount() {
         PersoonDao persoonDao = new PersoonDao();
 
         String voornaam = txt_voornaam.getText();
@@ -55,12 +55,11 @@ public class BeheerWachtwoordReset {
                 txt_voornaam.setText("");
                 txt_achternaam.setText("");
 
-                personenVoornaam.get(0).setWachtwoord("vrolijkeZweter");
-                persoonDao.updatePersoon(personenVoornaam.get(0));
+                persoonDao.deletePersoon(personenVoornaam.get(0));
 
-                showAlertGelukt("Gelukt", "Het wachtwoord is gereset");
+                showAlertGelukt("Gelukt", "Het account is verwijderd");
             } else {
-                showAlert("Warning", "Deze persoon is geen gekende gebruiker. Kijk de spelling nog eens na");
+                showAlert("Warning", "Deze persoon bestaat niet");
             }
         }
     }
