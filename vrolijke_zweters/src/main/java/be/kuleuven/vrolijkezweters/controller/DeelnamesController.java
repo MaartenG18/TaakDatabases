@@ -41,7 +41,7 @@ public class DeelnamesController {
     private TableColumn<LoperWedstrijd, LocalDate> table_loperdatum;
 
     @FXML
-    private TableColumn<LoperWedstrijd, Integer> table_lopertijd;
+    private TableColumn<LoperWedstrijd, String> table_lopertijd;
 
     @FXML
     private TableView<VrijwilligerWedstrijd> table_vrijwilliger;
@@ -112,11 +112,15 @@ public class DeelnamesController {
             if (etappeResultaatList.size() > 0) {
                 newElement.setDatum(etappeResultaatList.get(0).getEtappe().getWedstrijd().getDatum());
                 newElement.setNaam(etappeResultaatList.get(0).getEtappe().getWedstrijd().getNaam());
-            } else {
+            } else {    // binnenkort overbodig
                 newElement.setDatum(LocalDate.of(2000, 1, 1));
                 newElement.setNaam("geen naam gevonden");
             }
-            newElement.setTijd(totaleTijd);
+            if (totaleTijd == 0) {
+                newElement.setTijd("n.v.t.");
+            } else {
+                newElement.setTijd("" + totaleTijd);
+            }
 
             newList.add(newElement);
         }
@@ -125,7 +129,7 @@ public class DeelnamesController {
         table_loperid.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, Long>("loopNummer"));
         table_loperdatum.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, LocalDate>("datum"));
         table_lopernaam.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, String>("naam"));
-        table_lopertijd.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, Integer>("tijd"));
+        table_lopertijd.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, String>("tijd"));
 
         //Collections.sort(newList, (object1, object2) -> object1.getDatum().compareTo(object2.getDatum())); //op datum sorteren, later testen
 

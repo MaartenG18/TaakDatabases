@@ -135,7 +135,7 @@ public class ScreenOpener {
             InschrijvenLoperView inschrijvenLoperView = new InschrijvenLoperView(stage);
             InschrijvenLoperController inschrijvenLoperController = new InschrijvenLoperController(inschrijvenLoperView, persoon);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("inschrijvenLoper.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("inschrijvenloper.fxml"));
             fxmlLoader.setController(inschrijvenLoperController);
             Parent root = fxmlLoader.load();
             inschrijvenLoperView.setRoot(root);
@@ -152,7 +152,7 @@ public class ScreenOpener {
             InschrijvenVrijwilligerView inschrijvenVrijwilligerView = new InschrijvenVrijwilligerView(stage);
             InschrijvenVrijwilligerController inschrijvenVrijwilligerController = new InschrijvenVrijwilligerController(inschrijvenVrijwilligerView, persoon);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("inschrijvenVrijwilliger.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("inschrijvenvrijwilliger.fxml"));
             fxmlLoader.setController(inschrijvenVrijwilligerController);
             Parent root = fxmlLoader.load();
             inschrijvenVrijwilligerView.setRoot(root);

@@ -5,6 +5,7 @@ import be.kuleuven.vrolijkezweters.model.Persoon;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.List;
 
 public class PersoonDao {
     private final EntityManager entityManager;
@@ -13,7 +14,7 @@ public class PersoonDao {
         this.entityManager = EntityManagerProvider.getEntityManager();
     }
 
-    public Persoon findPersoonByName(String naam) {
+    public List<Persoon> findPersoonByName(String naam) {
         var criteriaBuilder = entityManager.getCriteriaBuilder();
         var query = criteriaBuilder.createQuery(Persoon.class); // SELECT .... FROM PERSOON
         var root = query.from(Persoon.class); // SELECT *
@@ -21,7 +22,21 @@ public class PersoonDao {
         query.where(criteriaBuilder.equal(root.get("naam"), naam));
 
         try {
-            return entityManager.createQuery(query).getSingleResult();
+            return entityManager.createQuery(query).getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<Persoon> findPersoonByFirstName(String voornaam) {
+        var criteriaBuilder = entityManager.getCriteriaBuilder();
+        var query = criteriaBuilder.createQuery(Persoon.class);
+        var root = query.from(Persoon.class);
+
+        query.where(criteriaBuilder.equal(root.get("voornaam"), voornaam));
+
+        try {
+            return entityManager.createQuery(query).getResultList();
         } catch (NoResultException e) {
             return null;
         }

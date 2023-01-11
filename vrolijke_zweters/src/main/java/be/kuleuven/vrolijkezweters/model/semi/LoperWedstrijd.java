@@ -11,7 +11,7 @@ public class LoperWedstrijd {
 
     private Long loopNummer;
 
-    private int tijd;
+    private String tijd;
 
     private String naam;
     private LocalDate datum;
@@ -27,10 +27,10 @@ public class LoperWedstrijd {
         this.loopNummer = loopNummer;
     }
 
-    public int getTijd() {
+    public String getTijd() {
         return tijd;
     }
-    public void setTijd(int tijd) {
+    public void setTijd(String tijd) {
         this.tijd = tijd;
     }
 

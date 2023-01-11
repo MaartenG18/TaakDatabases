@@ -61,18 +61,18 @@ public class InschrijvenLoperController {
 
     @FXML
     void initialize() {
-        assert table_wedstrijden != null : "fx:id=\"table_wedstrijden\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert table_id != null : "fx:id=\"table_id\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert table_datum != null : "fx:id=\"table_datum\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert table_naam != null : "fx:id=\"table_naam\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert table_startlocatie != null : "fx:id=\"table_startlocatie\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert table_eindlocatie != null : "fx:id=\"table_eindlocatie\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert table_afstand != null : "fx:id=\"table_afstand\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert table_inschrijvingsgeld != null : "fx:id=\"table_inschrijvingsgeld\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert btn_inschrijven != null : "fx:id=\"btn_inschrijven\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert txt_id != null : "fx:id=\"txt_id\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert txt_fitheid != null : "fx:id=\"txt_fitheid\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
-        assert txt_gewicht != null : "fx:id=\"txt_gewicht\" was not injected: check your FXML file 'inschrijvenLoper.fxml'.";
+        assert table_wedstrijden != null : "fx:id=\"table_wedstrijden\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert table_id != null : "fx:id=\"table_id\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert table_datum != null : "fx:id=\"table_datum\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert table_naam != null : "fx:id=\"table_naam\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert table_startlocatie != null : "fx:id=\"table_startlocatie\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert table_eindlocatie != null : "fx:id=\"table_eindlocatie\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert table_afstand != null : "fx:id=\"table_afstand\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert table_inschrijvingsgeld != null : "fx:id=\"table_inschrijvingsgeld\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert btn_inschrijven != null : "fx:id=\"btn_inschrijven\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert txt_id != null : "fx:id=\"txt_id\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert txt_fitheid != null : "fx:id=\"txt_fitheid\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
+        assert txt_gewicht != null : "fx:id=\"txt_gewicht\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
 
         voegWedstrijdenToe();
 
@@ -137,7 +137,7 @@ public class InschrijvenLoperController {
                 List<Etappe> etappeList = wedstrijd.getEtappes();
                 for (Etappe etappe : etappeList) {
                     EtappeResultaat etappeResultaat = new EtappeResultaat();
-                    etappeResultaat.setTijd(9999);
+                    etappeResultaat.setTijd(0);
 
                     etappe.voegEtappeResultaatToe(etappeResultaat);
                     newLoper.voegEtappeResultaatToe(etappeResultaat);

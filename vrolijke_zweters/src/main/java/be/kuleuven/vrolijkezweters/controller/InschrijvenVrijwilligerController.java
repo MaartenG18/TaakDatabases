@@ -54,15 +54,15 @@ public class InschrijvenVrijwilligerController {
 
     @FXML
     void initialize() {
-        assert table_wedstrijden != null : "fx:id=\"table_wedstrijden\" was not injected: check your FXML file 'inschrijvenVrijwilliger.fxml'.";
-        assert table_id != null : "fx:id=\"table_id\" was not injected: check your FXML file 'inschrijvenVrijwilliger.fxml'.";
-        assert table_datum != null : "fx:id=\"table_datum\" was not injected: check your FXML file 'inschrijvenVrijwilliger.fxml'.";
-        assert table_naam != null : "fx:id=\"table_naam\" was not injected: check your FXML file 'inschrijvenVrijwilliger.fxml'.";
-        assert table_startlocatie != null : "fx:id=\"table_startlocatie\" was not injected: check your FXML file 'inschrijvenVrijwilliger.fxml'.";
-        assert table_eindlocatie != null : "fx:id=\"table_eindlocatie\" was not injected: check your FXML file 'inschrijvenVrijwilliger.fxml'.";
-        assert btn_inschrijven != null : "fx:id=\"btn_inschrijven\" was not injected: check your FXML file 'inschrijvenVrijwilliger.fxml'.";
-        assert txt_id != null : "fx:id=\"txt_id\" was not injected: check your FXML file 'inschrijvenVrijwilliger.fxml'.";
-        assert txt_taak != null : "fx:id=\"txt_taak\" was not injected: check your FXML file 'inschrijvenVrijwilliger.fxml'.";
+        assert table_wedstrijden != null : "fx:id=\"table_wedstrijden\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
+        assert table_id != null : "fx:id=\"table_id\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
+        assert table_datum != null : "fx:id=\"table_datum\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
+        assert table_naam != null : "fx:id=\"table_naam\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
+        assert table_startlocatie != null : "fx:id=\"table_startlocatie\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
+        assert table_eindlocatie != null : "fx:id=\"table_eindlocatie\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
+        assert btn_inschrijven != null : "fx:id=\"btn_inschrijven\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
+        assert txt_id != null : "fx:id=\"txt_id\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
+        assert txt_taak != null : "fx:id=\"txt_taak\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
 
         voegWedstrijdenToe();
 
