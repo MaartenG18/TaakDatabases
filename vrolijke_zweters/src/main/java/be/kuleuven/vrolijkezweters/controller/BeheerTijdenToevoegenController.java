@@ -6,15 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import be.kuleuven.vrolijkezweters.database.EtappeResultaatDao;
 import be.kuleuven.vrolijkezweters.database.WedstrijdDao;
 import be.kuleuven.vrolijkezweters.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BeheerTijdenToevoegenController {
@@ -159,16 +157,63 @@ public class BeheerTijdenToevoegenController {
     }
 
     private void voegEtappeResultaatToe() {
+        EtappeResultaatDao etappeResultaatDao = new EtappeResultaatDao();
+        int tijd = 0;
+
+        Wedstrijd wedstrijd = table_wedstrijd.getSelectionModel().getSelectedItem();
         Etappe etappe = table_etappe.getSelectionModel().getSelectedItem();
         Persoon persoon = table_loper.getSelectionModel().getSelectedItem();
 
-        int tijd = Integer.parseInt(txt_tijd.getText());
+        if (wedstrijd == null || etappe == null || persoon == null) {
+            showAlert("Warning", "Je moet zowel een wedstrijd, etappe als persoon selecteren");
+        }
 
-        // en nu het juiste etapperesultaat zoeken dat gelinkt is aan de etappe en de persoon
-        List<Loper> mogelijkeLopers = persoon.getLopers();
-        List<EtappeResultaat> alleEtappeResultaten = etappe.getEtappeResultaten();
-        etappe.getEtappeResultaten().get(0).getLoper();
+        if (txt_tijd.getText() == "") {
+            showAlert("Warning", "Je hebt geen tijd opgegeven");
+        } else {
+            tijd = Integer.parseInt(txt_tijd.getText());
 
-        //TO DO: nieuwe wedstrijd + etappes aanmaken
+            List<Loper> alleLopers = new ArrayList<>();
+            Loper deLoper = new Loper();
+            List<EtappeResultaat> etappeResultaatList = etappe.getEtappeResultaten();
+
+            for (EtappeResultaat etappeResultaat : etappeResultaatList) {
+                alleLopers.add(etappeResultaat.getLoper());
+            }
+
+            for (Loper loper : alleLopers) {
+                if (loper.getPersoon().getPersoon_id() == persoon.getPersoon_id()) {
+                    deLoper = loper;
+                }
+            }
+
+            List<EtappeResultaat> etappeResultatenDeLoper = deLoper.getEtappeResultaten();
+
+            for (EtappeResultaat etappeResultaat : etappeResultatenDeLoper) {
+                if (etappe.getEtappe_id() == etappeResultaat.getEtappe().getEtappe_id()) {
+                    etappeResultaat.setTijd(tijd);
+                    etappeResultaatDao.updateEtappeResultaat(etappeResultaat);
+
+                    txt_tijd.setText("");
+                    showAlertGelukt("Gelukt", "Het etapperesultaat is gewijzigd naar: " + tijd + " seconden");
+                }
+            }
+        }
+    }
+
+    public void showAlert(String title, String content) {
+        var alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    public void showAlertGelukt(String title, String content) {
+        var alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }
