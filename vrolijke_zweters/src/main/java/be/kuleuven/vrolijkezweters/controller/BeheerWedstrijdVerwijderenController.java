@@ -2,12 +2,12 @@ package be.kuleuven.vrolijkezweters.controller;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import be.kuleuven.vrolijkezweters.database.EtappeDao;
-import be.kuleuven.vrolijkezweters.database.WedstrijdDao;
-import be.kuleuven.vrolijkezweters.model.Wedstrijd;
+import be.kuleuven.vrolijkezweters.database.*;
+import be.kuleuven.vrolijkezweters.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -70,7 +70,7 @@ public class BeheerWedstrijdVerwijderenController {
         table_wedstrijdeindlocatie.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("eindLocatie"));
 
         for (Wedstrijd wedstrijd : wedstrijdList) {
-            if (wedstrijd.getDatum().isBefore(huidigeDatum)) {
+            if (wedstrijd.getDatum().isAfter(huidigeDatum)) {
                 data.add(wedstrijd);
             }
         }
@@ -79,12 +79,38 @@ public class BeheerWedstrijdVerwijderenController {
 
     private void verwijderWedstrijd() {
         WedstrijdDao wedstrijdDao = new WedstrijdDao();
+        EtappeDao etappeDao = new EtappeDao();
+        EtappeResultaatDao etappeResultaatDao = new EtappeResultaatDao();
+        LoperDao loperDao = new LoperDao();
+        PersoonDao persoonDao = new PersoonDao();
 
         Wedstrijd wedstrijd = table_wedstrijd.getSelectionModel().getSelectedItem();
         if (wedstrijd == null) {
             showAlert("Warning", "U moet eerst een wedstrijd selecteren");
         } else {
-            wedstrijdDao.deleteWedstrijd(wedstrijd); //werkt niet??
+            // WERKT NIET!!
+            List<Etappe> etappeList = wedstrijd.getEtappes();
+            for (Etappe etappe : etappeList) {
+                List<EtappeResultaat> etappeResultaatList = etappe.getEtappeResultaten();
+
+                Loper loper = etappeResultaatList.get(0).getLoper();
+                Persoon persoon = etappeResultaatList.get(0).getLoper().getPersoon();
+
+                for (EtappeResultaat etappeResultaat : etappeResultaatList) {
+                    etappeResultaatDao.deleteEtappeResultaat(etappeResultaat);
+
+                    loperDao.updateLoper(loper);
+                    persoonDao.updatePersoon(persoon);
+                }
+
+                loperDao.deleteLoper(loper);
+                persoonDao.updatePersoon(persoon);
+                //etappeDao.updateEtappe(etappe);
+                etappeDao.deleteEtappe(etappe);
+            }
+            wedstrijdDao.updateWedstrijd(wedstrijd);
+            wedstrijdDao.deleteWedstrijd(wedstrijd);
+
             showAlertGelukt("Gelukt", "De wedstrijd is succesvol verwijderd");
         }
     }

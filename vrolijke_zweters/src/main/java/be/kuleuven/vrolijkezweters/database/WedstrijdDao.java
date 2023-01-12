@@ -1,7 +1,7 @@
 package be.kuleuven.vrolijkezweters.database;
 
 import be.kuleuven.vrolijkezweters.EntityManagerProvider;
-import be.kuleuven.vrolijkezweters.model.Wedstrijd;
+import be.kuleuven.vrolijkezweters.model.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -36,6 +36,20 @@ public class WedstrijdDao {
         var root = query.from(Wedstrijd.class);
 
         query.where(criteriaBuilder.equal(root.get("datum"), datum));
+
+        try {
+            return entityManager.createQuery(query).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public Wedstrijd findWedstrijdByName(String naam) {
+        var criteriaBuilder = entityManager.getCriteriaBuilder();
+        var query = criteriaBuilder.createQuery(Wedstrijd.class);
+        var root = query.from(Wedstrijd.class);
+
+        query.where(criteriaBuilder.equal(root.get("naam"), naam));
 
         try {
             return entityManager.createQuery(query).getSingleResult();
