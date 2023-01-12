@@ -66,7 +66,7 @@ public class ProjectMain extends Application {
         persoonDao.createPersoon(admin);
 
         Wedstrijd wedstrijd = new Wedstrijd();
-        wedstrijd.setDatum(LocalDate.of(2023, 2, 20));
+        wedstrijd.setDatum(LocalDate.of(2022, 2, 20));
         wedstrijd.setNaam("Rondje Genk-Hasselt");
         wedstrijd.setStartLocatie("Genk");
         wedstrijd.setEindLocatie("Hasselt");

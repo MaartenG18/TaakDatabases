@@ -20,23 +20,33 @@ public class AdminController {
     private URL location;
 
     @FXML
+    private Button btn_wedstrijdtoevoegen;
+
+    @FXML
+    private Button btn_wedstrijdverwijderen;
+
+    @FXML
+    private Button btn_tijdentoevoegen;
+
+    @FXML
     private Button btn_wachtwoordresetten;
 
     @FXML
     private Button btn_accountverwijderen;
 
     @FXML
-    private Button btn_tijdenToevoegen;
-
-    @FXML
     void initialize() {
+        assert btn_wedstrijdtoevoegen != null : "fx:id=\"btn_wedstrijdtoevoegen\" was not injected: check your FXML file 'admin.fxml'.";
+        assert btn_wedstrijdverwijderen != null : "fx:id=\"btn_wedstrijdverwijderen\" was not injected: check your FXML file 'admin.fxml'.";
+        assert btn_tijdentoevoegen != null : "fx:id=\"btn_tijdentoevoegen\" was not injected: check your FXML file 'admin.fxml'.";
         assert btn_wachtwoordresetten != null : "fx:id=\"btn_wachtwoordresetten\" was not injected: check your FXML file 'admin.fxml'.";
         assert btn_accountverwijderen != null : "fx:id=\"btn_accountverwijderen\" was not injected: check your FXML file 'admin.fxml'.";
-        assert btn_tijdenToevoegen != null : "fx:id=\"btn_tijdenToevoegen\" was not injected: check your FXML file 'admin.fxml'.";
 
+        btn_wedstrijdtoevoegen.setOnAction(e -> showBeheerScherm("wedstrijdToevoegen"));
+        btn_wedstrijdverwijderen.setOnAction(e -> showBeheerScherm("wedstrijdVerwijderen"));
+        btn_tijdentoevoegen.setOnAction(e -> showBeheerScherm("tijdenToevoegen"));
         btn_wachtwoordresetten.setOnAction(e -> showBeheerScherm("wachtwoordReset"));
         btn_accountverwijderen.setOnAction(e -> showBeheerScherm("accountVerwijderen"));
-        btn_tijdenToevoegen.setOnAction(e -> showBeheerScherm("tijdenToevoegen"));
     }
 
     private void showBeheerScherm(String id) {
