@@ -15,18 +15,18 @@
     </Text>
    <TableView fx:id="table_wedstrijd" layoutX="64.0" layoutY="137.0" prefHeight="126.0">
      <columns>
-       <TableColumn fx:id="table_wedstrijddatum" prefWidth="100.0" text="datum" />
-       <TableColumn fx:id="table_wedstrijdnaam" prefWidth="180.0" text="naam" />
-         <TableColumn fx:id="table_wedstrijdstartlocatie" prefWidth="150.0" text="startlocatie" />
-         <TableColumn fx:id="table_wedstrijdeindlocatie" prefWidth="150.0" text="eindlocatie" />
+       <TableColumn fx:id="table_wedstrijddatum" prefWidth="100.0" style="-fx-alignment: CENTER;" text="datum" />
+       <TableColumn fx:id="table_wedstrijdnaam" prefWidth="180.0" style="-fx-alignment: CENTER;" text="naam" />
+         <TableColumn fx:id="table_wedstrijdstartlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="startlocatie" />
+         <TableColumn fx:id="table_wedstrijdeindlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="eindlocatie" />
      </columns>
    </TableView>
    <TableView fx:id="table_klassement" layoutX="64.0" layoutY="338.0" prefHeight="394.0">
      <columns>
-       <TableColumn fx:id="table_klassementplaats" prefWidth="75.0" text="plaats" />
-       <TableColumn fx:id="table_klassementtijd" prefWidth="120.0" text="tijd" />
-         <TableColumn fx:id="table_klassementachternaam" prefWidth="150.0" text="achternaam" />
-         <TableColumn fx:id="table_klassementvoornaam" prefWidth="150.0" text="voornaam" />
+       <TableColumn fx:id="table_klassementplaats" prefWidth="75.0" style="-fx-alignment: CENTER;" text="plaats" />
+       <TableColumn fx:id="table_klassementtijd" prefWidth="120.0" style="-fx-alignment: CENTER;" text="tijd" />
+         <TableColumn fx:id="table_klassementachternaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="achternaam" />
+         <TableColumn fx:id="table_klassementvoornaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="voornaam" />
      </columns>
    </TableView>
    <Text layoutX="64.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klassement">
@@ -47,8 +47,8 @@
    </Text>
    <TableView fx:id="table_etappe" layoutX="773.0" layoutY="338.0" prefHeight="148.0" prefWidth="220.0">
      <columns>
-       <TableColumn fx:id="table_etappelocatie" prefWidth="120.0" text="locatie" />
-       <TableColumn fx:id="table_etappelengte" prefWidth="100.0" text="lengte (in km)" />
+       <TableColumn fx:id="table_etappelocatie" prefWidth="120.0" style="-fx-alignment: CENTER;" text="locatie" />
+       <TableColumn fx:id="table_etappelengte" prefWidth="100.0" style="-fx-alignment: CENTER;" text="lengte (in km)" />
      </columns>
    </TableView>
    <Button fx:id="btn_etappeklassement" layoutX="1017.0" layoutY="399.0" mnemonicParsing="false" text="Bevestig" />
