@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800" prefWidth="1200" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <Text layoutX="64.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klassementen (per wedstrijd/etappe)" wrappingWidth="799.9999389648438">
+        <font>
+            <Font size="48.0" />
+        </font>
+    </Text>
+   <TableView fx:id="table_wedstrijd" layoutX="64.0" layoutY="137.0" prefHeight="126.0">
+     <columns>
+       <TableColumn fx:id="table_wedstrijddatum" prefWidth="100.0" text="datum" />
+       <TableColumn fx:id="table_wedstrijdnaam" prefWidth="180.0" text="naam" />
+         <TableColumn fx:id="table_wedstrijdstartlocatie" prefWidth="150.0" text="startlocatie" />
+         <TableColumn fx:id="table_wedstrijdeindlocatie" prefWidth="150.0" text="eindlocatie" />
+     </columns>
+   </TableView>
+   <TableView fx:id="table_klassement" layoutX="64.0" layoutY="338.0" prefHeight="394.0">
+     <columns>
+       <TableColumn fx:id="table_klassementplaats" prefWidth="75.0" text="plaats" />
+       <TableColumn fx:id="table_klassementtijd" prefWidth="120.0" text="tijd" />
+         <TableColumn fx:id="table_klassementachternaam" prefWidth="150.0" text="achternaam" />
+         <TableColumn fx:id="table_klassementvoornaam" prefWidth="150.0" text="voornaam" />
+     </columns>
+   </TableView>
+   <Text layoutX="64.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klassement">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Text>
+   <Text layoutX="671.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecteer de wedstrijd waarvan u het klassement wil bekijken:">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Button fx:id="btn_wedstrijdklassement" layoutX="883.0" layoutY="206.0" mnemonicParsing="false" text="Bevestig" />
+   <Text layoutX="646.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Of selecteer hierna de etappe waarvan u het klassement wil bekijken:">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <TableView fx:id="table_etappe" layoutX="773.0" layoutY="338.0" prefHeight="148.0" prefWidth="220.0">
+     <columns>
+       <TableColumn fx:id="table_etappelocatie" prefWidth="120.0" text="locatie" />
+       <TableColumn fx:id="table_etappelengte" prefWidth="100.0" text="lengte (in km)" />
+     </columns>
+   </TableView>
+   <Button fx:id="btn_etappeklassement" layoutX="1017.0" layoutY="399.0" mnemonicParsing="false" text="Bevestig" />
+</AnchorPane>

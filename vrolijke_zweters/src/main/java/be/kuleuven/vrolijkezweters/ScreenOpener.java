@@ -55,6 +55,9 @@ public class ScreenOpener {
             case "gegevens":
                 openGegevensScreen();
                 break;
+            case "klassement":
+                openKlassementScreen();
+                break;
         }
     }
 
@@ -196,4 +199,21 @@ public class ScreenOpener {
             e.printStackTrace();
         }
     }
-}
+
+    private void openKlassementScreen() {
+        try {
+            Stage stage = new Stage();
+            KlassementView klassementView = new KlassementView(stage);
+            KlassementController klassementController = new KlassementController(persoon);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("klassement.fxml"));
+            fxmlLoader.setController(klassementController);
+            Parent root = fxmlLoader.load();
+            klassementView.setRoot(root);
+            klassementView.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+ }

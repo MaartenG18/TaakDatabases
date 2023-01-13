@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -14,15 +15,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import java.lang.String?>
-<AnchorPane fx:id="anchr_background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-pref-height: 600px; -fx-pref-width: 1200px; -fx-background-color: #E9ECEF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchr_background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-pref-height: 600px; -fx-pref-width: 1200px; -fx-background-color: #E9ECEF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <ImageView fx:id="img_background" fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true"
-                   x="-250.0">
+        <ImageView fx:id="img_background" fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true" x="-250.0">
             <viewport>
-                <Rectangle2D/>
+                <Rectangle2D />
             </viewport>
-            <Image url="@zweters.jpg"/>
+            <Image url="@zweters.jpg" />
         </ImageView>
         <Text fill="WHITE" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DE VROLIJKE ZWETERS" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="60.0">
             <font>
@@ -31,7 +30,7 @@
         </Text>
         <AnchorPane fx:id="anchr_right_side" layoutX="600.0" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: #E9ECEF;" AnchorPane.topAnchor="0.0">
             <children>
-                <Text fx:id="txt_sign_in" layoutX="179.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" AnchorPane.topAnchor="0.0">
+                <Text fx:id="txt_sign_in" layoutX="160.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registreren" AnchorPane.topAnchor="5.671875">
                     <font>
                         <Font size="80.0" />
                     </font>
@@ -65,7 +64,7 @@
                 </Text>
                 <TextField fx:id="txt_input_email" layoutX="160.0" layoutY="355.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #F8F9FA; -fx-border-color: #343A40; -fx-border-width: 2; -fx-border-radius: 5;" />
 
-                <Text fx:id="txt_password" layoutX="165.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                <Text fx:id="txt_password" layoutX="165.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wachtwoord">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -77,20 +76,19 @@
                         <Font size="24.0" />
                     </font>
                 </Text>
-                <ChoiceBox fx:id="input_gender" layoutX="160.0" layoutY="495.0" prefHeight="35.0" prefWidth="300.0"
-                           style="-fx-background-color: #F8F9FA; -fx-border-color: #343A40; -fx-border-width: 2; -fx-border-radius: 5;">
-                    <String fx:value="M"/>
-                    <String fx:value="V"/>
-                    <String fx:value="X"/>
+                <ChoiceBox fx:id="input_gender" layoutX="160.0" layoutY="495.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #F8F9FA; -fx-border-color: #343A40; -fx-border-width: 2; -fx-border-radius: 5;">
+                    <String fx:value="M" />
+                    <String fx:value="V" />
+                    <String fx:value="X" />
                 </ChoiceBox>
 
-                <Hyperlink fx:id="link_signin" layoutX="335.0" layoutY="540.0" style="-fx-cursor: HAND;" text="Sign In &gt;">
+                <Hyperlink fx:id="link_signin" layoutX="335.0" layoutY="540.0" style="-fx-cursor: HAND;" text="Inloggen &gt;">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Hyperlink>
 
-                <Button fx:id="btn_signup" layoutX="160.0" layoutY="540.0" mnemonicParsing="false" style="-fx-background-color: #343A40; -fx-border-radius: 5px;" text="Sign Up" textFill="#f8f9fa">
+                <Button fx:id="btn_signup" layoutX="160.0" layoutY="540.0" mnemonicParsing="false" style="-fx-background-color: #343A40; -fx-border-radius: 5px;" text="Registreer" textFill="#f8f9fa">
                     <font>
                         <Font size="24.0" />
                     </font>
