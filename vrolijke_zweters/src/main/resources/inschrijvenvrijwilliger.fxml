@@ -21,21 +21,15 @@
     </Text>
     <TableView fx:id="table_wedstrijden" layoutX="64.0" layoutY="222.0" prefHeight="178.0">
         <columns>
-            <TableColumn fx:id="table_id" prefWidth="50.0" style="-fx-alignment: CENTER;" text="id" />
             <TableColumn fx:id="table_datum" minWidth="0.0" prefWidth="120.0" style="-fx-alignment: CENTER;" text="datum" />
             <TableColumn fx:id="table_naam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="naam" />
             <TableColumn fx:id="table_startlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="startlocatie" />
          <TableColumn fx:id="table_eindlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="eindlocatie" />
         </columns>
     </TableView>
-    <Text layoutX="64.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extra gegevens om in te schrijven" wrappingWidth="628.0311889648438">
+    <Text layoutX="64.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extra gegevens om in te schrijven" wrappingWidth="628.0311889648438">
         <font>
             <Font size="36.0" />
-        </font>
-    </Text>
-    <Text layoutX="64.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id* :" wrappingWidth="90.43116760253906">
-        <font>
-            <Font size="24.0" />
         </font>
     </Text>
     <Text layoutX="64.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="taak* :" wrappingWidth="103.23118591308594">
@@ -43,7 +37,7 @@
             <Font size="24.0" />
         </font>
     </Text>
-    <Text layoutX="64.0" layoutY="779.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* verplichte velden" wrappingWidth="511.231201171875">
+    <Text layoutX="64.0" layoutY="779.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* verplicht veld" wrappingWidth="511.231201171875">
         <font>
             <Font size="14.0" />
         </font>
@@ -53,6 +47,5 @@
             <Font size="18.0" />
         </font>
     </Button>
-    <TextField fx:id="txt_id" layoutX="181.0" layoutY="520.0" prefHeight="32.0" prefWidth="490.0" promptText="geef hier het id in dat overeenkomt met de wedstrijd waarvoor u zich wil inschrijven" />
     <TextField fx:id="txt_taak" layoutX="181.0" layoutY="563.0" prefHeight="32.0" prefWidth="490.0" promptText="omschrijf je taak" />
 </AnchorPane>

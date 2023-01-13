@@ -29,9 +29,6 @@ public class InschrijvenVrijwilligerController {
     private TableView<Wedstrijd> table_wedstrijden;
 
     @FXML
-    private TableColumn<Wedstrijd, Integer> table_id;
-
-    @FXML
     private TableColumn<Wedstrijd, LocalDate> table_datum;
 
     @FXML
@@ -47,21 +44,16 @@ public class InschrijvenVrijwilligerController {
     private Button btn_inschrijven;
 
     @FXML
-    private TextField txt_id;
-
-    @FXML
     private TextField txt_taak;
 
     @FXML
     void initialize() {
         assert table_wedstrijden != null : "fx:id=\"table_wedstrijden\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
-        assert table_id != null : "fx:id=\"table_id\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
         assert table_datum != null : "fx:id=\"table_datum\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
         assert table_naam != null : "fx:id=\"table_naam\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
         assert table_startlocatie != null : "fx:id=\"table_startlocatie\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
         assert table_eindlocatie != null : "fx:id=\"table_eindlocatie\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
         assert btn_inschrijven != null : "fx:id=\"btn_inschrijven\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
-        assert txt_id != null : "fx:id=\"txt_id\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
         assert txt_taak != null : "fx:id=\"txt_taak\" was not injected: check your FXML file 'inschrijvenvrijwilliger.fxml'.";
 
         voegWedstrijdenToe();
@@ -75,7 +67,6 @@ public class InschrijvenVrijwilligerController {
         LocalDate huidigeDatum = LocalDate.now();
 
         ObservableList<Wedstrijd> data = FXCollections.observableArrayList();
-        table_id.setCellValueFactory(new PropertyValueFactory<Wedstrijd, Integer>("wedstrijd_id"));
         table_datum.setCellValueFactory(new PropertyValueFactory<Wedstrijd, LocalDate>("datum"));
         table_naam.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("naam"));
         table_startlocatie.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("startLocatie"));
@@ -93,30 +84,26 @@ public class InschrijvenVrijwilligerController {
         VrijwilligerDao vrijwilligerDao = new VrijwilligerDao();
         WedstrijdDao wedstrijdDao = new WedstrijdDao();
 
-        if (txt_id.getText().isEmpty() || txt_taak.getText().isEmpty()) {
-            showAlert("Warning!", "Er ontbreken gegevens in de verplichte velden");
+        if (table_wedstrijden.getSelectionModel().getSelectedItem() == null) {
+            showAlert("Warning!", "U hebt geen wedstrijd aangeduid");
+        } else if (txt_taak.getText().isEmpty()) {
+            showAlert("Warning!", "Het verplichte veld is niet aangevuld");
         } else {
-            int wedstrijdId = Integer.parseInt(txt_id.getText());
-            Wedstrijd wedstrijd = wedstrijdDao.findWedstrijdById(wedstrijdId);
+            Wedstrijd wedstrijd = table_wedstrijden.getSelectionModel().getSelectedItem();
 
-            if (wedstrijd == null) {
-                showAlert("Warning!", "Het id staat niet in de lijst");
-            } else {
-                Vrijwilliger newVrijwilliger = new Vrijwilliger();
-                newVrijwilliger.setTaak(txt_taak.getText());
-                newVrijwilliger.setPersoon(user);
-                newVrijwilliger.voegWedstrijdToe(wedstrijd);
+            Vrijwilliger newVrijwilliger = new Vrijwilliger();
+            newVrijwilliger.setTaak(txt_taak.getText());
+            newVrijwilliger.setPersoon(user);
+            newVrijwilliger.voegWedstrijdToe(wedstrijd);
 
-                wedstrijd.voegVrijwilligerToe(newVrijwilliger);
+            wedstrijd.voegVrijwilligerToe(newVrijwilliger);
 
-                vrijwilligerDao.createVrijwilliger(newVrijwilliger);
-                wedstrijdDao.updateWedstrijd(wedstrijd);
+            vrijwilligerDao.createVrijwilliger(newVrijwilliger);
+            wedstrijdDao.updateWedstrijd(wedstrijd);
 
-                txt_id.setText("");
-                txt_taak.setText("");
+            txt_taak.setText("");
 
-                showAlertGelukt("Gelukt", "De inschrijving is voltooid!");
-            }
+            showAlertGelukt("Gelukt", "De inschrijving is voltooid!");
         }
     }
 

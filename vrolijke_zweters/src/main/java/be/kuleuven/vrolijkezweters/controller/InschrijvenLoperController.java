@@ -27,9 +27,6 @@ public class InschrijvenLoperController {
     private TableView<Wedstrijd> table_wedstrijden;
 
     @FXML
-    private TableColumn<Wedstrijd, Integer> table_id;
-
-    @FXML
     private TableColumn<Wedstrijd, LocalDate> table_datum;
 
     @FXML
@@ -51,9 +48,6 @@ public class InschrijvenLoperController {
     private Button btn_inschrijven;
 
     @FXML
-    private TextField txt_id;
-
-    @FXML
     private TextField txt_fitheid;
 
     @FXML
@@ -62,7 +56,6 @@ public class InschrijvenLoperController {
     @FXML
     void initialize() {
         assert table_wedstrijden != null : "fx:id=\"table_wedstrijden\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
-        assert table_id != null : "fx:id=\"table_id\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
         assert table_datum != null : "fx:id=\"table_datum\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
         assert table_naam != null : "fx:id=\"table_naam\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
         assert table_startlocatie != null : "fx:id=\"table_startlocatie\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
@@ -70,7 +63,6 @@ public class InschrijvenLoperController {
         assert table_afstand != null : "fx:id=\"table_afstand\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
         assert table_inschrijvingsgeld != null : "fx:id=\"table_inschrijvingsgeld\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
         assert btn_inschrijven != null : "fx:id=\"btn_inschrijven\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
-        assert txt_id != null : "fx:id=\"txt_id\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
         assert txt_fitheid != null : "fx:id=\"txt_fitheid\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
         assert txt_gewicht != null : "fx:id=\"txt_gewicht\" was not injected: check your FXML file 'inschrijvenloper.fxml'.";
 
@@ -95,7 +87,6 @@ public class InschrijvenLoperController {
         LocalDate huidigeDatum = LocalDate.now();
 
         ObservableList<Wedstrijd> data = FXCollections.observableArrayList();
-        table_id.setCellValueFactory(new PropertyValueFactory<Wedstrijd, Integer>("wedstrijd_id"));
         table_datum.setCellValueFactory(new PropertyValueFactory<Wedstrijd, LocalDate>("datum"));
         table_naam.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("naam"));
         table_startlocatie.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("startLocatie"));
@@ -116,42 +107,35 @@ public class InschrijvenLoperController {
         WedstrijdDao wedstrijdDao = new WedstrijdDao();
         EtappeResultaatDao etappeResultaatDao = new EtappeResultaatDao();
 
-        if (txt_id.getText().isEmpty()) {
-            showAlert("Warning!", "Het verplichte veld 'id' is niet ingevuld");
+        if (table_wedstrijden.getSelectionModel().getSelectedItem() == null) {
+            showAlert("Warning!", "U hebt geen wedstrijd aangeduid");
         } else {
-            long wedstrijdId = Integer.parseInt(txt_id.getText());
-            Wedstrijd wedstrijd = wedstrijdDao.findWedstrijdById(wedstrijdId);
+            Wedstrijd wedstrijd = table_wedstrijden.getSelectionModel().getSelectedItem();
 
-            if (wedstrijd == null) {
-                showAlert("Warning!", "Het id staat niet in de lijst");
-            } else {
-                Loper newLoper = new Loper();
-                if (!txt_fitheid.getText().isEmpty())
-                    newLoper.setFitheid(Integer.parseInt(txt_fitheid.getText()));
-                if (!txt_gewicht.getText().isEmpty())
-                    newLoper.setGewicht(Integer.parseInt(txt_gewicht.getText()));
-                newLoper.setPersoon(user);
+            Loper newLoper = new Loper();
+            if (!txt_fitheid.getText().isEmpty())
+                newLoper.setFitheid(Integer.parseInt(txt_fitheid.getText()));
+            if (!txt_gewicht.getText().isEmpty())
+                newLoper.setGewicht(Integer.parseInt(txt_gewicht.getText()));
+            newLoper.setPersoon(user);
 
-                loperDao.createLoper(newLoper);
+            loperDao.createLoper(newLoper);
 
-                List<Etappe> etappeList = wedstrijd.getEtappes();
-                for (Etappe etappe : etappeList) {
-                    EtappeResultaat etappeResultaat = new EtappeResultaat();
-                    etappeResultaat.setTijd(0);
+            List<Etappe> etappeList = wedstrijd.getEtappes();
+            for (Etappe etappe : etappeList) {
+                EtappeResultaat etappeResultaat = new EtappeResultaat();
+                etappeResultaat.setTijd(0);
 
-                    etappe.voegEtappeResultaatToe(etappeResultaat);
-                    newLoper.voegEtappeResultaatToe(etappeResultaat);
-                    etappeResultaatDao.createEtappeResultaat(etappeResultaat);
-                }
-
-                wedstrijdDao.updateWedstrijd(wedstrijd);
-
-                txt_id.setText("");
-                txt_fitheid.setText("");
-                txt_gewicht.setText("");
-
-                showAlertGelukt("Gelukt", "De inschrijving is voltooid!");
+                etappe.voegEtappeResultaatToe(etappeResultaat);
+                newLoper.voegEtappeResultaatToe(etappeResultaat);
+                etappeResultaatDao.createEtappeResultaat(etappeResultaat);
             }
+
+            wedstrijdDao.updateWedstrijd(wedstrijd);
+
+            txt_fitheid.setText("");
+            txt_gewicht.setText("");
+            showAlertGelukt("Gelukt", "De inschrijving is voltooid!");
         }
     }
 
