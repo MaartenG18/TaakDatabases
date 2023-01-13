@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.vrolijkezweters.controller.BeheerVrijwilligersWedstrijdController">
+    <children>
+        <Text layoutX="48.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vrijwilligers per wedstrijd raadplegen">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Text>
+        <Text layoutX="48.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecteer de wedstrijd en bevestig:">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+      <TableView fx:id="table_wedstrijd" layoutX="48.0" layoutY="123.0" prefHeight="134.0">
+        <columns>
+          <TableColumn fx:id="table_wedstrijddatum" prefWidth="100.0" style="-fx-alignment: CENTER;" text="datum" />
+          <TableColumn fx:id="table_wedstrijdnaam" prefWidth="180.0" style="-fx-alignment: CENTER;" text="naam" />
+            <TableColumn fx:id="table_wedstrijdstartlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="startlocatie" />
+            <TableColumn fx:id="table_wedstrijdeindlocatie" prefWidth="150.0" style="-fx-alignment: CENTER;" text="eindlocatie" />
+        </columns>
+      </TableView>
+      <TableView fx:id="table_vrijwilligers" layoutX="48.0" layoutY="319.0" prefHeight="246.0">
+        <columns>
+          <TableColumn fx:id="table_vrijwilligersachternaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="achternaam" />
+          <TableColumn fx:id="table_vrijwilligersvoornaam" prefWidth="130.0" style="-fx-alignment: CENTER;" text="voornaam" />
+            <TableColumn fx:id="table_vrijwilligersgeboortedatum" prefWidth="120.0" style="-fx-alignment: CENTER;" text="geboortedatum" />
+            <TableColumn fx:id="table_vrijwilligerstaak" prefWidth="180.0" style="-fx-alignment: CENTER;" text="taak" />
+        </columns>
+      </TableView>
+      <Text layoutX="48.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lijst van vrijwilligers:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="btn_bevestigen" layoutX="339.0" layoutY="92.0" mnemonicParsing="false" text="OK" />
+    </children>
+</AnchorPane>
