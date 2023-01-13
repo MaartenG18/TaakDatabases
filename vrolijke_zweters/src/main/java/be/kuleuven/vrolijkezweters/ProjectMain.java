@@ -29,7 +29,7 @@ public class ProjectMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        maakDummyData();
+        //maakDummyData();
 
         Login model = new Login();
         LoginView view = new LoginView(stage, model);
@@ -180,6 +180,5 @@ public class ProjectMain extends Application {
         etappeResultaatDao.createEtappeResultaat(etappeResultaat1);
         etappeResultaatDao.createEtappeResultaat(etappeResultaat2);
         etappeResultaatDao.createEtappeResultaat(etappeResultaat3);
-
     }
 }

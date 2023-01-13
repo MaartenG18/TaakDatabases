@@ -9,14 +9,14 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.vrolijkezweters.controller.BeheerWedstrijdVerwijderenController">
     <children>
-        <Text layoutX="48.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wedstrijd verwijderen">
+        <Text layoutX="48.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wedstrijd annuleren">
             <font>
                 <Font size="36.0" />
             </font>
         </Text>
-        <Button fx:id="btn_verwijderen" layoutX="48.0" layoutY="316.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Verwijderen" />
-        <Text layoutX="48.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wanneer u op deze knop klikt, wordt de wedstrijd definitief verwijderd" />
-        <Text layoutX="48.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecteer de wedstrijd die u wilt verwijderen">
+        <Button fx:id="btn_verwijderen" layoutX="48.0" layoutY="316.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Annuleren" />
+        <Text layoutX="48.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wanneer u op deze knop klikt, wordt de wedstrijd (met alle gegevens) definitief verwijderd" />
+        <Text layoutX="48.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecteer de wedstrijd die u wilt annuleren">
             <font>
                 <Font size="18.0" />
             </font>
