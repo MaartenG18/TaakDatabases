@@ -112,7 +112,7 @@ public class DeelnamesController {
             if (etappeResultaatList.size() > 0) {
                 newElement.setDatum(etappeResultaatList.get(0).getEtappe().getWedstrijd().getDatum());
                 newElement.setNaam(etappeResultaatList.get(0).getEtappe().getWedstrijd().getNaam());
-            } else {    // binnenkort overbodig
+            } else {    // normaal overbodig
                 newElement.setDatum(LocalDate.of(2000, 1, 1));
                 newElement.setNaam("geen naam gevonden");
             }
@@ -126,7 +126,6 @@ public class DeelnamesController {
         }
 
         ObservableList<LoperWedstrijd> data = FXCollections.observableArrayList();
-        table_loperid.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, Long>("loopNummer"));
         table_loperdatum.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, LocalDate>("datum"));
         table_lopernaam.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, String>("naam"));
         table_lopertijd.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, String>("tijd"));
@@ -154,7 +153,6 @@ public class DeelnamesController {
         }
 
         ObservableList<VrijwilligerWedstrijd> data = FXCollections.observableArrayList();
-        table_vrijwilligerid.setCellValueFactory(new PropertyValueFactory<VrijwilligerWedstrijd, Integer>("vrijwilliger_id"));
         table_vrijwilligerdatum.setCellValueFactory(new PropertyValueFactory<VrijwilligerWedstrijd, LocalDate>("datum"));
         table_vrijwilligernaam.setCellValueFactory(new PropertyValueFactory<VrijwilligerWedstrijd, String>("naam"));
         table_vrijwilligertaak.setCellValueFactory(new PropertyValueFactory<VrijwilligerWedstrijd, String>("taak"));
@@ -168,25 +166,24 @@ public class DeelnamesController {
     private void verwijderInschrijvingLoper() {
         PersoonDao persoonDao = new PersoonDao();
         LoperDao loperDao = new LoperDao();
-        Long id = Long.valueOf(txt_verwijderenloper.getText());
 
-        if (loperDao.findLoperById(id) == null) {
-            showAlert("Warning!", "Het opgegeven id bestaat niet");
+        LoperWedstrijd loperWedstrijd = table_loper.getSelectionModel().getSelectedItem();
+        LocalDate huidigeDatum = LocalDate.now();
+
+        if (loperWedstrijd == null) {
+            showAlert("Warning!", "U heeft geen wedstrijd geselecteerd");
+        } else if (loperWedstrijd.getDatum().isBefore(huidigeDatum)) {
+            showAlert("Warning!", "U kan niet uitschrijven voor wedstrijden in het verleden");
         } else {
-            Loper loper = loperDao.findLoperById(id);
+            Loper loper = loperDao.findLoperById(loperWedstrijd.getLoopNummer());
             Persoon persoon = loper.getPersoon();
 
-            if (persoon.getPersoon_id() != user.getPersoon_id()) {
-                showAlert("Warning!", "Het opgegeven id klopt niet");
-            } else {
-                loperDao.deleteLoper(loper);
-                persoonDao.updatePersoon(persoon);
+            loperDao.deleteLoper(loper);
+            persoonDao.updatePersoon(persoon);
 
-                voegInschrijvingenLoperToe(persoon);
+            voegInschrijvingenLoperToe(persoon);
 
-                txt_verwijderenloper.setText("");
-                showAlertGelukt("Gelukt", "Het uitschrijven is voltooid!");
-            }
+            showAlertGelukt("Gelukt", "Het uitschrijven is voltooid!");
         }
     }
 

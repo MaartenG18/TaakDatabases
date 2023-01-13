@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -26,7 +25,6 @@
    </Text>
    <TableView fx:id="table_loper" layoutX="64.0" layoutY="200.0" prefHeight="220.0">
      <columns>
-       <TableColumn fx:id="table_loperid" prefWidth="50.0" style="-fx-alignment: CENTER;" text="id" />
        <TableColumn fx:id="table_lopernaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="naam" />
          <TableColumn fx:id="table_loperdatum" prefWidth="120.0" style="-fx-alignment: CENTER;" text="datum" />
          <TableColumn fx:id="table_lopertijd" prefWidth="150.0" style="-fx-alignment: CENTER;" text="tijd" />
@@ -34,24 +32,21 @@
    </TableView>
    <TableView fx:id="table_vrijwilliger" layoutX="64.0" layoutY="530.0" prefHeight="220.0">
       <columns>
-         <TableColumn fx:id="table_vrijwilligerid" prefWidth="50.0" style="-fx-alignment: CENTER;" text="id" />
          <TableColumn fx:id="table_vrijwilligernaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="naam" />
          <TableColumn fx:id="table_vrijwilligerdatum" prefWidth="120.0" style="-fx-alignment: CENTER;" text="datum" />
          <TableColumn fx:id="table_vrijwilligertaak" prefWidth="225.0" style="-fx-alignment: CENTER;" text="taak" />
       </columns>
    </TableView>
-   <Button fx:id="btn_verwijderenloper" layoutX="1014.0" layoutY="353.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" text="verwijderen" />
-   <Text layoutX="698.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verwijder mijn inschrijving als loper met id:">
+   <Button fx:id="btn_verwijderenloper" layoutX="1002.0" layoutY="296.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" text="verwijderen" />
+   <Text layoutX="590.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verwijder mijn geselecteerde inschrijving als loper:">
       <font>
          <Font size="18.0" />
       </font>
    </Text>
-   <TextField fx:id="txt_verwijderenloper" layoutX="698.0" layoutY="353.0" prefHeight="26.0" prefWidth="304.0" promptText="geef hier het id op dat overeenkomt met de wedstrijd" />
-   <Button fx:id="btn_verwijderenvrijwilliger" layoutX="1014.0" layoutY="683.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" text="verwijderen" />
-   <Text layoutX="698.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verwijder mijn inschrijving als vrijwilliger met id:">
+   <Button fx:id="btn_verwijderenvrijwilliger" layoutX="1082.0" layoutY="627.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" text="verwijderen" />
+   <Text layoutX="634.0" layoutY="647.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verwijder mijn geselecteerde inschrijving als vrijwilliger:">
       <font>
          <Font size="18.0" />
       </font>
    </Text>
-   <TextField fx:id="txt_verwijderenvrijwilliger" layoutX="698.0" layoutY="683.0" prefHeight="26.0" prefWidth="304.0" promptText="geef hier het id op dat overeenkomt met de wedstrijd" />
 </AnchorPane>
