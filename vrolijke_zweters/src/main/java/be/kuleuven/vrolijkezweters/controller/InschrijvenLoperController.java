@@ -2,6 +2,7 @@ package be.kuleuven.vrolijkezweters.controller;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -93,6 +94,8 @@ public class InschrijvenLoperController {
         table_eindlocatie.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("eindLocatie"));
         table_afstand.setCellValueFactory(new PropertyValueFactory<Wedstrijd, Integer>("afstand"));
         table_inschrijvingsgeld.setCellValueFactory(new PropertyValueFactory<Wedstrijd, Integer>("inschrijvingsgeld"));
+
+        Collections.sort(wedstrijdList, (object1, object2) -> object1.getDatum().compareTo(object2.getDatum()));
 
         for (Wedstrijd wedstrijd : wedstrijdList) {
             if (wedstrijd.getDatum().isAfter(huidigeDatum)) {

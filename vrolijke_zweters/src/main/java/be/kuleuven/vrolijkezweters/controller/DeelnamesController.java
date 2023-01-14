@@ -131,7 +131,7 @@ public class DeelnamesController {
         table_lopernaam.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, String>("naam"));
         table_lopertijd.setCellValueFactory(new PropertyValueFactory<LoperWedstrijd, String>("tijd"));
 
-        //Collections.sort(newList, (object1, object2) -> object1.getDatum().compareTo(object2.getDatum())); //op datum sorteren, later testen
+        Collections.sort(newList, (object1, object2) -> object1.getDatum().compareTo(object2.getDatum()));
 
         data.addAll(newList);
         table_loper.setItems(data);
@@ -158,7 +158,7 @@ public class DeelnamesController {
         table_vrijwilligernaam.setCellValueFactory(new PropertyValueFactory<VrijwilligerWedstrijd, String>("naam"));
         table_vrijwilligertaak.setCellValueFactory(new PropertyValueFactory<VrijwilligerWedstrijd, String>("taak"));
 
-        //Collections.sort(newList, (object1, object2) -> object1.getDatum().compareTo(object2.getDatum())); //op datum sorteren, later testen
+        Collections.sort(newList, (object1, object2) -> object1.getDatum().compareTo(object2.getDatum()));
 
         data.addAll(newList);
         table_vrijwilliger.setItems(data);

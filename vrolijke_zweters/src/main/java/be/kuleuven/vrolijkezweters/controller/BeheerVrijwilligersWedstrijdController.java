@@ -83,8 +83,6 @@ public class BeheerVrijwilligersWedstrijdController {
         WedstrijdDao wedstrijdDao = new WedstrijdDao();
         List<Wedstrijd> wedstrijdList = wedstrijdDao.findAlleWedstrijden();
 
-        LocalDate huidigeDatum = LocalDate.now();
-
         ObservableList<Wedstrijd> data = FXCollections.observableArrayList();
         table_wedstrijddatum.setCellValueFactory(new PropertyValueFactory<Wedstrijd, LocalDate>("datum"));
         table_wedstrijdnaam.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("naam"));
@@ -92,9 +90,7 @@ public class BeheerVrijwilligersWedstrijdController {
         table_wedstrijdeindlocatie.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("eindLocatie"));
 
         for (Wedstrijd wedstrijd : wedstrijdList) {
-            if (wedstrijd.getDatum().isAfter(huidigeDatum)) {
-                data.add(wedstrijd);
-            }
+            data.add(wedstrijd);
         }
         table_wedstrijd.setItems(data);
     }
