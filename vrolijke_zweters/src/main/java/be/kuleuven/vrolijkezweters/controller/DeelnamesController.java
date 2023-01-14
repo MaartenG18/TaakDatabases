@@ -3,6 +3,7 @@ package be.kuleuven.vrolijkezweters.controller;
 import be.kuleuven.vrolijkezweters.database.LoperDao;
 import be.kuleuven.vrolijkezweters.database.PersoonDao;
 import be.kuleuven.vrolijkezweters.database.VrijwilligerDao;
+import be.kuleuven.vrolijkezweters.database.WedstrijdDao;
 import be.kuleuven.vrolijkezweters.model.*;
 
 import java.net.URL;
@@ -190,25 +191,24 @@ public class DeelnamesController {
     private void verwijderInschrijvingVrijwilliger() {
         PersoonDao persoonDao = new PersoonDao();
         VrijwilligerDao vrijwilligerDao = new VrijwilligerDao();
-        Long id = Long.valueOf(txt_verwijderenvrijwilliger.getText());
 
-        if (vrijwilligerDao.findVrijwilligerById(id) == null) {
-            showAlert("Warning!", "Het opgegeven id bestaat niet");
+        VrijwilligerWedstrijd vrijwilligerWedstrijd = table_vrijwilliger.getSelectionModel().getSelectedItem();
+        LocalDate huidigeDatum = LocalDate.now();
+
+        if (vrijwilligerWedstrijd == null) {
+            showAlert("Warning!", "U heeft geen taak geselecteerd");
+        } else if (vrijwilligerWedstrijd.getDatum().isBefore(huidigeDatum)) {
+            showAlert("Warning!", "U kan niet uitschrijven voor wedstrijden in het verleden");
         } else {
-            Vrijwilliger vrijwilliger = vrijwilligerDao.findVrijwilligerById(id);
+            Vrijwilliger vrijwilliger = vrijwilligerDao.findVrijwilligerById(vrijwilligerWedstrijd.getVrijwilliger_id());
             Persoon persoon = vrijwilliger.getPersoon();
 
-            if (persoon.getPersoon_id() != user.getPersoon_id()) {
-                showAlert("Warning!", "Het opgegeven id klopt niet");
-            } else {
-                vrijwilligerDao.deleteVrijwilliger(vrijwilliger);
-                persoonDao.updatePersoon(persoon);
+            vrijwilligerDao.deleteVrijwilliger(vrijwilliger);
+            persoonDao.updatePersoon(persoon);
 
-                voegInschrijvingenVrijwilligerToe(persoon);
+            voegInschrijvingenVrijwilligerToe(persoon);
 
-                txt_verwijderenvrijwilliger.setText("");
-                showAlertGelukt("Gelukt", "Het uitschrijven is voltooid!");
-            }
+            showAlertGelukt("Gelukt", "Het uitschrijven is voltooid!");
         }
     }
 

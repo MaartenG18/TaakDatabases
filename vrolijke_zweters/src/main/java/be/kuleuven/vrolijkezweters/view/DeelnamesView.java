@@ -13,7 +13,7 @@ public class DeelnamesView extends Stage {
     }
 
     public void start() {
-        stage.setTitle("De Vrolijke Zweters - Mijn deelnames");
+        stage.setTitle("De Vrolijke Zweters - Mijn (toekomstige) inschrijvingen");
         stage.setResizable(false);
         stage.show();
     }
