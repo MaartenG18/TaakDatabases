@@ -99,7 +99,16 @@ public class InschrijvenLoperController {
 
         for (Wedstrijd wedstrijd : wedstrijdList) {
             if (wedstrijd.getDatum().isAfter(huidigeDatum)) {
-                data.add(wedstrijd);
+                boolean loperAlGevondenInWedstrijd = false;
+                List<EtappeResultaat> etappeResultaatList = wedstrijd.getEtappes().get(0).getEtappeResultaten();
+                for (EtappeResultaat etappeResultaat : etappeResultaatList) {
+                    if (etappeResultaat.getLoper().getPersoon().getPersoon_id() == user.getPersoon_id()) {
+                        loperAlGevondenInWedstrijd = true;
+                    }
+                }
+                if (!loperAlGevondenInWedstrijd) {
+                    data.add(wedstrijd);
+                }
             }
         }
         table_wedstrijden.setItems(data);

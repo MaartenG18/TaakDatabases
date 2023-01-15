@@ -25,61 +25,176 @@
       </ToolBar>
       <AnchorPane layoutY="40.0" prefHeight="760.0" prefWidth="1200.0">
          <children>
-            <Text fx:id="txt_titel" layoutX="190.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volgende wedstrijd">
+            <Text fx:id="txt_titel" layoutX="714.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Volgende wedstrijd">
                <font>
-                  <Font size="96.0" />
+                  <Font size="48.0" />
                </font>
             </Text>
-            <Text fx:id="txt_datum" layoutX="190.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datum:">
+            <Text fx:id="txt_datum" layoutX="714.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datum:">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="txt_startlocatie" layoutX="190.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Startlocatie:">
+            <Text fx:id="txt_startlocatie" layoutX="714.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Startlocatie:">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="txt_eindlocatie" layoutX="190.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eindlocatie:">
+            <Text fx:id="txt_eindlocatie" layoutX="714.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eindlocatie:">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="txt_afstand" layoutX="190.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Afstand:">
+            <Text fx:id="txt_afstand" layoutX="714.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Afstand:">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
             </Text>
-            <Label fx:id="label_datum" layoutX="398.0" layoutY="329.0" prefHeight="54.0" prefWidth="610.0" text="n.v.t.">
+            <Label fx:id="label_datum" layoutX="861.0" layoutY="154.0" prefHeight="54.0" prefWidth="299.0" text="n.v.t.">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="label_startlocatie" layoutX="398.0" layoutY="429.0" prefHeight="54.0" prefWidth="610.0" text="n.v.t.">
+            <Label fx:id="label_startlocatie" layoutX="861.0" layoutY="254.0" prefHeight="54.0" prefWidth="299.0" text="n.v.t.">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="label_eindlocatie" layoutX="398.0" layoutY="479.0" prefHeight="54.0" prefWidth="610.0" text="n.v.t.">
+            <Label fx:id="label_eindlocatie" layoutX="861.0" layoutY="304.0" prefHeight="54.0" prefWidth="299.0" text="n.v.t.">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="label_afstand" layoutX="398.0" layoutY="529.0" prefHeight="54.0" prefWidth="610.0" text="n.v.t.">
+            <Label fx:id="label_afstand" layoutX="861.0" layoutY="354.0" prefHeight="54.0" prefWidth="299.0" text="n.v.t.">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <Text fx:id="txt_naam" layoutX="190.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Naam:">
+            <Text fx:id="txt_naam" layoutX="714.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Naam:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Label fx:id="label_naam" layoutX="861.0" layoutY="204.0" prefHeight="54.0" prefWidth="299.0" text="n.v.t.">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Text fx:id="txt_titel1" layoutX="47.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Algemene klassementen">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="714.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dus schrijf je nog snel in">
                <font>
                   <Font size="36.0" />
                </font>
             </Text>
-            <Label fx:id="label_naam" layoutX="398.0" layoutY="379.0" prefHeight="54.0" prefWidth="610.0" text="n.v.t.">
+            <Text layoutX="714.0" layoutY="563.0" strokeType="OUTSIDE" strokeWidth="0.0" text="via de knop linksboven!">
                <font>
                   <Font size="36.0" />
                </font>
-            </Label>
+            </Text>
+            <Text layoutX="47.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meeste gelopen kilometers:">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meeste aantal deelnames:">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaakst vrijwilliger geweest:">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaakst gewonnen:">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1ste plaats">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="jouw plaats">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1ste plaats">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="jouw plaats">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1ste plaats">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="563.0" strokeType="OUTSIDE" strokeWidth="0.0" text="jouw plaats">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="670.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1ste plaats">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="710.0" strokeType="OUTSIDE" strokeWidth="0.0" text="jouw plaats">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="txt_eerstekm" layoutX="162.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="txt_eigenkm" layoutX="162.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="txt_eerstedeelnames" layoutX="162.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="txt_eigendeelnames" layoutX="162.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="txt_eerstevrijwilliger" layoutX="162.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="txt_eigenvrijwilliger" layoutX="162.0" layoutY="563.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="txt_eerstewinnen" layoutX="162.0" layoutY="670.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="txt_eigenwinnen" layoutX="162.0" layoutY="710.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

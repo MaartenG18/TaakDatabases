@@ -1,6 +1,5 @@
 package be.kuleuven.vrolijkezweters.controller;
 
-import be.kuleuven.vrolijkezweters.ProjectMain;
 import be.kuleuven.vrolijkezweters.ScreenOpener;
 import be.kuleuven.vrolijkezweters.database.WedstrijdDao;
 import be.kuleuven.vrolijkezweters.model.Persoon;
@@ -51,9 +50,6 @@ public class HomeController {
     private Text txt_datum;
 
     @FXML
-    private Text txt_naam;
-
-    @FXML
     private Text txt_startlocatie;
 
     @FXML
@@ -66,9 +62,6 @@ public class HomeController {
     private Label label_datum;
 
     @FXML
-    private Label label_naam;
-
-    @FXML
     private Label label_startlocatie;
 
     @FXML
@@ -76,6 +69,39 @@ public class HomeController {
 
     @FXML
     private Label label_afstand;
+
+    @FXML
+    private Text txt_naam;
+
+    @FXML
+    private Label label_naam;
+
+    @FXML
+    private Text txt_titel1;
+
+    @FXML
+    private Text txt_eerstekm;
+
+    @FXML
+    private Text txt_eigenkm;
+
+    @FXML
+    private Text txt_eerstedeelnames;
+
+    @FXML
+    private Text txt_eigendeelnames;
+
+    @FXML
+    private Text txt_eerstevrijwilliger;
+
+    @FXML
+    private Text txt_eigenvrijwilliger;
+
+    @FXML
+    private Text txt_eerstewinnen;
+
+    @FXML
+    private Text txt_eigenwinnen;
 
     @FXML
     void initialize() {
@@ -97,6 +123,15 @@ public class HomeController {
         assert label_afstand != null : "fx:id=\"label_afstand\" was not injected: check your FXML file 'main.fxml'.";
         assert txt_naam != null : "fx:id=\"txt_naam\" was not injected: check your FXML file 'main.fxml'.";
         assert label_naam != null : "fx:id=\"label_naam\" was not injected: check your FXML file 'main.fxml'.";
+        assert txt_titel1 != null : "fx:id=\"txt_titel1\" was not injected: check your FXML file 'main.fxml'.";
+        assert txt_eerstekm != null : "fx:id=\"txt_eerstekm\" was not injected: check your FXML file 'main.fxml'.";
+        assert txt_eigenkm != null : "fx:id=\"txt_eigenkm\" was not injected: check your FXML file 'main.fxml'.";
+        assert txt_eerstedeelnames != null : "fx:id=\"txt_eerstedeelnames\" was not injected: check your FXML file 'main.fxml'.";
+        assert txt_eigendeelnames != null : "fx:id=\"txt_eigendeelnames\" was not injected: check your FXML file 'main.fxml'.";
+        assert txt_eerstevrijwilliger != null : "fx:id=\"txt_eerstevrijwilliger\" was not injected: check your FXML file 'main.fxml'.";
+        assert txt_eigenvrijwilliger != null : "fx:id=\"txt_eigenvrijwilliger\" was not injected: check your FXML file 'main.fxml'.";
+        assert txt_eerstewinnen != null : "fx:id=\"txt_eerstewinnen\" was not injected: check your FXML file 'main.fxml'.";
+        assert txt_eigenwinnen != null : "fx:id=\"txt_eigenwinnen\" was not injected: check your FXML file 'main.fxml'.";
 
         if (user.isAdmin()) {
             btnAdmin.setVisible(true);
@@ -114,7 +149,31 @@ public class HomeController {
             view.stop();
         });
 
+        toonResultatenKlassementen();
         toonVolgendeWedstrijd();
+    }
+
+    private void toonResultatenKlassementen() {
+        toonKlassementKilometers();
+        toonKlassementDeelnames();
+        toonKlassementVrijwilliger();
+        toonKlassementWinnaars();
+    }
+
+    private void toonKlassementKilometers() {
+        //van elke persoon, alle lopers hun km's ophalen via etapperesultaat naar etappe
+    }
+
+    private void toonKlassementDeelnames() {
+        //van elke persoon, aantal lopers ophalen
+    }
+
+    private void toonKlassementVrijwilliger() {
+        //van elke persoon, aantal vrijwilligers ophalen
+    }
+
+    private void toonKlassementWinnaars() {
+        //nog geen idee
     }
 
     private void toonVolgendeWedstrijd() {
