@@ -3,6 +3,7 @@ package be.kuleuven.vrolijkezweters.controller;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -63,10 +64,10 @@ public class BeheerTijdenToevoegenController {
     private Button btn_selecteerwedstrijd;
 
     @FXML
-    private Button btn_selecteerloper;
+    private Button btn_selecteeretappe;
 
     @FXML
-    private Button btn_selecteeretappe;
+    private Label txt_gelukt;
 
     @FXML
     void initialize() {
@@ -83,19 +84,17 @@ public class BeheerTijdenToevoegenController {
         assert table_etappelocatie != null : "fx:id=\"table_etappelocatie\" was not injected: check your FXML file 'beheertijdentoevoegen.fxml'.";
         assert table_etappelengte != null : "fx:id=\"table_etappelengte\" was not injected: check your FXML file 'beheertijdentoevoegen.fxml'.";
         assert btn_selecteerwedstrijd != null : "fx:id=\"btn_selecteerwedstrijd\" was not injected: check your FXML file 'beheertijdentoevoegen.fxml'.";
-        assert btn_selecteerloper != null : "fx:id=\"btn_selecteerloper\" was not injected: check your FXML file 'beheertijdentoevoegen.fxml'.";
         assert btn_selecteeretappe != null : "fx:id=\"btn_selecteeretappe\" was not injected: check your FXML file 'beheertijdentoevoegen.fxml'.";
+        assert txt_gelukt != null : "fx:id=\"txt_gelukt\" was not injected: check your FXML file 'beheertijdentoevoegen.fxml'.";
 
         zetWedstrijdenInTabel();
 
         table_etappe.setVisible(false);
         btn_selecteeretappe.setVisible(false);
         table_loper.setVisible(false);
-        btn_selecteerloper.setVisible(false);
 
         btn_selecteerwedstrijd.setOnAction(e -> zetEtappesInTabel());
         btn_selecteeretappe.setOnAction(e -> zetLopersInTabel());
-        //btn_selecteerloper.setOnAction(e -> );
 
         btn_toevoegen.setOnAction(e -> voegEtappeResultaatToe());
     }
@@ -105,16 +104,25 @@ public class BeheerTijdenToevoegenController {
         WedstrijdDao wedstrijdDao = new WedstrijdDao();
         List<Wedstrijd> wedstrijdList = wedstrijdDao.findAlleWedstrijden();
 
+        LocalDate huidigeDatum = LocalDate.now();
+
         ObservableList<Wedstrijd> data = FXCollections.observableArrayList();
         table_wedstrijddatum.setCellValueFactory(new PropertyValueFactory<Wedstrijd, LocalDate>("datum"));
         table_wedstrijdnaam.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("naam"));
 
-        data.addAll(wedstrijdList);
+        Collections.sort(wedstrijdList, (object1, object2) -> object2.getDatum().compareTo(object1.getDatum()));
+
+        for (Wedstrijd wedstrijd : wedstrijdList) {
+            if (wedstrijd.getDatum().isBefore(huidigeDatum)) {
+                data.add(wedstrijd);
+            }
+        }
 
         table_wedstrijd.setItems(data);
     }
 
     private void zetEtappesInTabel() {
+        txt_gelukt.setText("");
         table_etappe.setVisible(true);
         btn_selecteeretappe.setVisible(true);
 
@@ -131,8 +139,8 @@ public class BeheerTijdenToevoegenController {
     }
 
     private void zetLopersInTabel() {
+        txt_gelukt.setText("");
         table_loper.setVisible(true);
-        btn_selecteerloper.setVisible(true);
 
         Etappe etappe = table_etappe.getSelectionModel().getSelectedItem();
 
@@ -195,7 +203,8 @@ public class BeheerTijdenToevoegenController {
                     etappeResultaatDao.updateEtappeResultaat(etappeResultaat);
 
                     txt_tijd.setText("");
-                    showAlertGelukt("Gelukt", "Het etapperesultaat is gewijzigd naar: " + tijd + " seconden");
+                    String tekst = "Het etapperesultaat van " + deLoper.getPersoon().getVoornaam() + " " + deLoper.getPersoon().getNaam() + " is gewijzigd naar: " + tijd + " seconden.";
+                    txt_gelukt.setText(tekst);
                 }
             }
         }

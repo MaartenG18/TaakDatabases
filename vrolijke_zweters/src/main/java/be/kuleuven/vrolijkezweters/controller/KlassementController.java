@@ -2,10 +2,7 @@ package be.kuleuven.vrolijkezweters.controller;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import be.kuleuven.vrolijkezweters.database.WedstrijdDao;
 import be.kuleuven.vrolijkezweters.model.*;
@@ -110,6 +107,8 @@ public class KlassementController {
         table_wedstrijdnaam.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("naam"));
         table_wedstrijdstartlocatie.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("startLocatie"));
         table_wedstrijdeindlocatie.setCellValueFactory(new PropertyValueFactory<Wedstrijd, String>("eindLocatie"));
+
+        Collections.sort(wedstrijdList, (object1, object2) -> object2.getDatum().compareTo(object1.getDatum()));
 
         for (Wedstrijd wedstrijd : wedstrijdList) {
             if (wedstrijd.getDatum().isBefore(huidigeDatum)) {

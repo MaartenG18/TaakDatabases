@@ -24,7 +24,7 @@
    <TableView fx:id="table_klassement" layoutX="64.0" layoutY="338.0" prefHeight="394.0">
      <columns>
        <TableColumn fx:id="table_klassementplaats" prefWidth="75.0" style="-fx-alignment: CENTER;" text="plaats" />
-       <TableColumn fx:id="table_klassementtijd" prefWidth="120.0" style="-fx-alignment: CENTER;" text="tijd" />
+       <TableColumn fx:id="table_klassementtijd" prefWidth="120.0" style="-fx-alignment: CENTER;" text="tijd (in s)" />
          <TableColumn fx:id="table_klassementachternaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="achternaam" />
          <TableColumn fx:id="table_klassementvoornaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="voornaam" />
      </columns>
