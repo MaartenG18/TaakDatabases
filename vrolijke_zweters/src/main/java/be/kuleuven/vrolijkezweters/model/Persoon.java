@@ -37,6 +37,10 @@ public class Persoon {
     @Column(name = "admin", nullable = false)
     private boolean admin;
 
+    private int gelopenKilometers = 0;
+    private int aantalDeelnames = 0;
+    private int aantalKerenVrijwilliger = 0;
+
     @OneToMany(mappedBy = "persoon", cascade = CascadeType.ALL)
     private List<Loper> lopers;
 
@@ -157,6 +161,30 @@ public class Persoon {
 
     public void setVrijwilligers(List<Vrijwilliger> vrijwilligers) {
         this.vrijwilligers = vrijwilligers;
+    }
+
+    public int getGelopenKilometers() {
+        return gelopenKilometers;
+    }
+
+    public void setGelopenKilometers(int gelopenKilometers) {
+        this.gelopenKilometers = gelopenKilometers;
+    }
+
+    public int getAantalDeelnames() {
+        return aantalDeelnames;
+    }
+
+    public void setAantalDeelnames(int aantalDeelnames) {
+        this.aantalDeelnames = aantalDeelnames;
+    }
+
+    public int getAantalKerenVrijwilliger() {
+        return aantalKerenVrijwilliger;
+    }
+
+    public void setAantalKerenVrijwilliger(int aantalKerenVrijwilliger) {
+        this.aantalKerenVrijwilliger = aantalKerenVrijwilliger;
     }
 
 

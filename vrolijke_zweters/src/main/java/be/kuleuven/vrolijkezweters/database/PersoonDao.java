@@ -56,6 +56,18 @@ public class PersoonDao {
         }
     }
 
+    public List<Persoon> findAllPersonen() {
+        var criteriaBuilder = entityManager.getCriteriaBuilder();
+        var query = criteriaBuilder.createQuery(Persoon.class);
+        var root = query.from(Persoon.class);
+
+        try {
+            return entityManager.createQuery(query).getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
     public void createPersoon(Persoon persoon) {
         entityManager.getTransaction().begin();
         entityManager.persist(persoon);
