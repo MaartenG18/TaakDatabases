@@ -138,19 +138,19 @@ public class HomeController {
     private TableColumn<Persoon, Integer> table_vrijwilligeraantal;
 
     @FXML
-    private TableView<Persoon> table_gewonnen;
+    private TableView<Persoon> table_tijd;
 
     @FXML
-    private TableColumn<Persoon, Integer> table_gewonnennr;
+    private TableColumn<Persoon, Integer> table_tijdnr;
 
     @FXML
-    private TableColumn<Persoon, String> table_gewonnenachternaam;
+    private TableColumn<Persoon, String> table_tijdachternaam;
 
     @FXML
-    private TableColumn<Persoon, String> table_gewonnenvoornaam;
+    private TableColumn<Persoon, String> table_tijdvoornaam;
 
     @FXML
-    private TableColumn<Persoon, Integer> table_gewonnenaantal;
+    private TableColumn<Persoon, Integer> table_tijdaantal;
 
     @FXML
     void initialize() {
@@ -185,10 +185,10 @@ public class HomeController {
         assert table_vrijwilligernr != null : "fx:id=\"table_vrijwilligernr\" was not injected: check your FXML file 'main.fxml'.";
         assert table_vrijwilligerachternaam != null : "fx:id=\"table_vrijwilligerachternaam\" was not injected: check your FXML file 'main.fxml'.";
         assert table_vrijwilligervoornaam != null : "fx:id=\"table_vrijwilligervoornaam\" was not injected: check your FXML file 'main.fxml'.";
-        assert table_gewonnen != null : "fx:id=\"table_gewonnen\" was not injected: check your FXML file 'main.fxml'.";
-        assert table_gewonnennr != null : "fx:id=\"table_gewonnennr\" was not injected: check your FXML file 'main.fxml'.";
-        assert table_gewonnenachternaam != null : "fx:id=\"table_gewonnenachternaam\" was not injected: check your FXML file 'main.fxml'.";
-        assert table_gewonnenvoornaam != null : "fx:id=\"table_gewonnenvoornaam\" was not injected: check your FXML file 'main.fxml'.";
+        assert table_tijd != null : "fx:id=\"table_gewonnen\" was not injected: check your FXML file 'main.fxml'.";
+        assert table_tijdnr != null : "fx:id=\"table_gewonnennr\" was not injected: check your FXML file 'main.fxml'.";
+        assert table_tijdachternaam != null : "fx:id=\"table_gewonnenachternaam\" was not injected: check your FXML file 'main.fxml'.";
+        assert table_tijdvoornaam != null : "fx:id=\"table_gewonnenvoornaam\" was not injected: check your FXML file 'main.fxml'.";
 
 
         if (user.isAdmin()) {
@@ -215,7 +215,7 @@ public class HomeController {
         toonKlassementKilometers();
         toonKlassementDeelnames();
         toonKlassementVrijwilliger();
-        toonKlassementWinnaars();
+        toonKlassementTijd();
     }
 
     private void toonKlassementKilometers() {
@@ -252,7 +252,13 @@ public class HomeController {
             }
         }
 
-        data.sort((o1, o2) -> o2.getGelopenKilometers() - o1.getGelopenKilometers());
+        data.sort((o1, o2) -> {
+            if (o1.getGelopenKilometers() == o2.getGelopenKilometers()) {
+                return o1.getNaam().compareTo(o2.getNaam());
+            } else {
+                return o2.getGelopenKilometers() - o1.getGelopenKilometers();
+            }
+        });
         table_km.setItems(data);
     }
 
@@ -282,7 +288,13 @@ public class HomeController {
             }
         }
 
-        data.sort((o1, o2) -> o2.getAantalDeelnames() - o1.getAantalDeelnames());
+        data.sort((o1, o2) -> {
+            if (o1.getAantalDeelnames() == o2.getAantalDeelnames()) {
+                return o1.getNaam().compareTo(o2.getNaam());
+            } else {
+                return o2.getAantalDeelnames() - o1.getAantalDeelnames();
+            }
+        });
         table_deelnames.setItems(data);
     }
 
@@ -312,12 +324,58 @@ public class HomeController {
             }
         }
 
-        data.sort((o1, o2) -> o2.getAantalKerenVrijwilliger() - o1.getAantalKerenVrijwilliger());
+        data.sort((o1, o2) -> {
+            if (o1.getAantalKerenVrijwilliger() == o2.getAantalKerenVrijwilliger()) {
+                return o1.getNaam().compareTo(o2.getNaam());
+            } else {
+                return o2.getAantalKerenVrijwilliger() - o1.getAantalKerenVrijwilliger();
+            }
+        });
         table_vrijwilliger.setItems(data);
     }
 
-    private void toonKlassementWinnaars() {
-        //nog doen
+    private void toonKlassementTijd() {
+        PersoonDao persoonDao = new PersoonDao();
+        List<Persoon> allePersonen = persoonDao.findAllPersonen();
+
+        for (Persoon persoon : allePersonen) {
+            List<Loper> alleLopers = persoon.getLopers();
+
+            for (Loper loper : alleLopers) {
+                List<EtappeResultaat> alleEtappeResultaten = loper.getEtappeResultaten();
+
+                for (EtappeResultaat etappeResultaat : alleEtappeResultaten) {
+                    persoon.setGelopenSeconden(persoon.getGelopenSeconden() + etappeResultaat.getTijd());
+                }
+            }
+        }
+
+        ObservableList<Persoon> data = FXCollections.observableArrayList();
+        table_tijdachternaam.setCellValueFactory(new PropertyValueFactory<Persoon, String>("naam"));
+        table_tijdvoornaam.setCellValueFactory(new PropertyValueFactory<Persoon, String>("voornaam"));
+        table_tijdaantal.setCellValueFactory(new PropertyValueFactory<Persoon, Integer>("gelopenSeconden"));
+        table_tijdaantal.setSortType(TableColumn.SortType.DESCENDING);
+        table_tijdnr.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Persoon, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Persoon, Integer> param) {
+                return new SimpleIntegerProperty(data.indexOf(param.getValue()) + 1).asObject();
+            }
+        });
+
+        for (Persoon persoon : allePersonen) {
+            if (!persoon.isAdmin()) {
+                data.add(persoon);
+            }
+        }
+
+        data.sort((o1, o2) -> {
+            if (o1.getGelopenSeconden() == o2.getGelopenSeconden()) {
+                return o1.getNaam().compareTo(o2.getNaam());
+            } else {
+                return o2.getGelopenSeconden() - o1.getGelopenSeconden();
+            }
+        });
+        table_tijd.setItems(data);
     }
 
     private void toonVolgendeWedstrijd() {

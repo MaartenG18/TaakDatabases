@@ -112,7 +112,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text layoutX="413.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaakst gewonnen:">
+            <Text layoutX="413.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Langst gelopen:">
                <font>
                   <Font size="24.0" />
                </font>
@@ -120,9 +120,9 @@
             <TableView fx:id="table_km" layoutX="26.0" layoutY="205.0" prefHeight="220.0">
               <columns>
                 <TableColumn fx:id="table_kmnr" prefWidth="30.0" style="-fx-alignment: CENTER;" text="nr." />
-                <TableColumn fx:id="table_kmachternaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="achternaam" />
+                <TableColumn fx:id="table_kmachternaam" prefWidth="140.0" style="-fx-alignment: CENTER;" text="achternaam" />
                   <TableColumn fx:id="table_kmvoornaam" prefWidth="100.0" style="-fx-alignment: CENTER;" text="voornaam" />
-                  <TableColumn fx:id="table_kmaantal" prefWidth="60.0" style="-fx-alignment: CENTER;" text="aantal" />
+                  <TableColumn fx:id="table_kmaantal" prefWidth="70.0" style="-fx-alignment: CENTER;" text="aantal (km)" />
               </columns>
             </TableView>
             <TableView fx:id="table_deelnames" layoutX="413.0" layoutY="205.0" prefHeight="220.0">
@@ -141,12 +141,12 @@
                   <TableColumn fx:id="table_vrijwilligeraantal" prefWidth="60.0" style="-fx-alignment: CENTER;" text="aantal" />
                </columns>
             </TableView>
-            <TableView fx:id="table_gewonnen" layoutX="413.0" layoutY="497.0" prefHeight="220.0">
+            <TableView fx:id="table_tijd" layoutX="413.0" layoutY="497.0" prefHeight="220.0">
                <columns>
-                  <TableColumn fx:id="table_gewonnennr" prefWidth="40.0" style="-fx-alignment: CENTER;" text="nr." />
-                  <TableColumn fx:id="table_gewonnenachternaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="achternaam" />
-                  <TableColumn fx:id="table_gewonnenvoornaam" prefWidth="100.0" style="-fx-alignment: CENTER;" text="voornaam" />
-                  <TableColumn fx:id="table_gewonnenaantal" prefWidth="60.0" style="-fx-alignment: CENTER;" text="aantal" />
+                  <TableColumn fx:id="table_tijdnr" prefWidth="40.0" style="-fx-alignment: CENTER;" text="nr." />
+                  <TableColumn fx:id="table_tijdachternaam" prefWidth="150.0" style="-fx-alignment: CENTER;" text="achternaam" />
+                  <TableColumn fx:id="table_tijdvoornaam" prefWidth="100.0" style="-fx-alignment: CENTER;" text="voornaam" />
+                  <TableColumn fx:id="table_tijdaantal" prefWidth="60.0" style="-fx-alignment: CENTER;" text="aantal (s)" />
                </columns>
             </TableView>
          </children>
